@@ -4,7 +4,7 @@
 
 ### Ce module est une amélioration de
 
-* [mylabotools](https://github.com/sergeLabo/mylabotools)
+* [pymultilame](https://github.com/sergeLabo/pymultilame)
 
 qui n'est plus maintenu.
 
@@ -52,14 +52,13 @@ Network:
 
 Ils peuvent être exécuté pour être tester, sauf les scripts du Blender Game Engine qui doivent tourner dans blender.
 
-
 ### Installation
 
 #### Installation de Twisted pour python 3.x
 
 * [Installation de Twisted pour python 3.x](https://ressources.labomedia.org/installation_de_twisted)
 
-#### Installation de mylabotools
+#### Installation de pymultilame
 
 * [Créer son propre package python](https://ressources.labomedia.org/creer_son_propre_package_python)
 
@@ -67,23 +66,21 @@ Ils peuvent être exécuté pour être tester, sauf les scripts du Blender Game 
 ### Utilisation
 
 ~~~python
-import mylabotools
+import pymultilame
 
 ou
 
-from mylabotools import labtcpclient
+from pymultilame.network.tcp import labtcpclient
 ~~~
 
+### TODO
+
+* Une jolie doc avec Doxygen ou Sphinx
+* Utiliser virtualenv
 
 ### Version
 
-* 1.48 some tools propre
-* 1.47 correction path_walker, GPL V3
-* 1.46
-* 1.45 modif license
-* 1.44 bug
-* 1.43 directory_traversal remplace get_all_files
-* 1.42 try sur lecture de fichier
+* 0.01 Version alpha de mise en place des scripts
 
 ### Merci à
 
