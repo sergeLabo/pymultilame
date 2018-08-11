@@ -1,0 +1,16 @@
+
+# https://pip.pypa.io/en/latest/reference/pip_install/#requirements-file-format
+
+####### requirements.txt #######
+
+###### Requirements without Version Specifiers ######
+twisted
+
+###### Requirements with Version Specifiers ######
+
+###### Refer to other requirements files ######
+
+###### A particular file ######
+
+###### Additional Requirements without Version Specifiers ######
+#   Same as 1st section, just here to show that you can put things in any order.
