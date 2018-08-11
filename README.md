@@ -4,7 +4,7 @@
 
 ### Ce module est une amélioration de
 
-* [pymultilame](https://github.com/sergeLabo/pymultilame)
+* [mylabotools](https://github.com/sergeLabo/mylabotools)
 
 qui n'est plus maintenu.
 
