@@ -2,6 +2,11 @@
 # Geany
 *.geany
 
+# dev directory
+./pymultilame/network/test
+./pymultilame/network/EchoProj
+./pymultilame/network/pb_example
+
 # Python test
 *_old.py
 
