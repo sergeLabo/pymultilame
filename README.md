@@ -3,29 +3,18 @@
 ### Des scripts python pour les tâches répétitives.
 
     Ce module propose les outils les plus courrant que j'utilise,
-    et aussi pour retrouver des syntaxes peu utilisée,
-    mais qui nécessiterait des recherches.
+    à utiliser en import ou en recopiant des bouts de code.
 
-#### Ce module est une amélioration de
+    Ce module est une amélioration de
+    [mylabotools](https://github.com/sergeLabo/mylabotools)
+    qui n'est plus maintenu.
 
-* [mylabotools](https://github.com/sergeLabo/mylabotools)
-
-qui n'est plus maintenu.
-
-#### Comprend
+#### Comprend les rubriques
 
 * Blender: Des scripts spécifiques pour le Blender Game Engine 2.7x et qui ne peuvent tourner que dans Blender
 * Twisted: des exemples de twisted en python3
 * Network: des sockets simples en python3
 * Tools: des outils utilisés fréquement
-
-#### Liste de tous les scripts
-
-Tools
-
-Blender 
-
-Network:
 
 ### Installation
 
@@ -46,6 +35,7 @@ sudo pip3 install -e git+https://github.com/sergeLabo/pymultilame.git#egg=pymult
 ~~~
 
 Mise à jour:
+
 ~~~text
 sudo pip3 install --upgrade git+https://github.com/sergeLabo/pymultilame.git#egg=pymultilame
 ~~~
@@ -54,11 +44,8 @@ sudo pip3 install --upgrade git+https://github.com/sergeLabo/pymultilame.git#egg
 ### Utilisation
 
 ~~~python
-import pymultilame
-~~~
-ou
-~~~python
-
+from pymultilame.blendertools import scene_change
+from pymultilame import HttpDownload
 ~~~
 
 ### Licence
@@ -74,13 +61,12 @@ voir le fichier LICENSE
 * [Créer son propre package python](https://ressources.labomedia.org/creer_son_propre_package_python)
 * [pymultilame](https://ressources.labomedia.org/pymultilame)
 
+### Conversion de README.md en dokuwiki
+
+~~~text
+pandoc README.md -f markdown -t dokuwiki -s -o README.dokuwiki
+~~~
 
 ### Merci à
 
 * [La Labomedia](https://labomedia.org)
-
-    A quoi sert la lib.
-    Comment l’installer.
-    Un exempe concret d’utilisation.
-    La licence d’utilisation.
-    Un lien vers la doc si elle existe.

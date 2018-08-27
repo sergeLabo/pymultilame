@@ -25,7 +25,9 @@ Des méthodes souvent appelées par les autres scripts,
 regroupées dans une class MyTools
 """
 
+
 import os
+import subprocess
 import pathlib
 from json import dumps, loads
 
@@ -125,7 +127,32 @@ class MyTools:
 
         return os.path.abspath(a_file_or_a_directory)
 
+    def run_command_system(self, command):
+        """
+        Excécute la command shell et reourne la sortie terminal.
+        command = ['your_command', 'arg1', 'arg2', ...]
+        Ne marche pas:
+            resp = subprocess.call(command.split())
+        """
+        p = subprocess.Popen(command,
+                             stdout=subprocess.PIPE,
+                             stderr=subprocess.PIPE)
+        output, errors = p.communicate()
 
+        return output.decode('utf-8')
+
+
+def test_run_command_system():
+    
+    mt = MyTools()
+    
+    # ls du dossiercourant
+    print(mt.run_command_system(['ls']))
+    
+    # ls du dossiercourant
+    print(mt.run_command_system(['pydoc3.5', 'pymultilame.HttpDownload']))
+    
+    
 def test_get_all_files_list():
     """
     Recherche des py et txt dans pymultilame/pymultilame/
@@ -147,4 +174,5 @@ def test_get_all_files_list():
 
 if __name__ == "__main__":
 
-    test_get_all_files_list()
+    #test_get_all_files_list()
+    test_run_command_system()

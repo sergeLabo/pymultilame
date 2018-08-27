@@ -22,13 +22,14 @@
 
 """
 Télécharge une url.
+Peut aussi l'enregister
 """
 
 from urllib.request import Request, urlopen
 from urllib.error import URLError
 import socket
 
-__all__ = ['HttpDownload']
+__all__ = ['HttpDownload', 'save_data_in_file']
 
 class HttpDownload:
     """
@@ -80,7 +81,8 @@ class HttpDownload:
         
     def decode_or_not(self, response):
         """
-        Decode si text, rien si fichier.
+        Decode utf-8 si text, rien si fichier.
+        Donc text = utf-8, fichier = bytes
         """
         
         try:

@@ -1,0 +1,237 @@
+====blendertools====
+<code txt>
+CLASSES
+    class VirtualGl(builtins.object)
+     |  bge = blender game engine
+     |  Cette class remplace
+     |  from bge import logic
+     |  en dehors du Game Engine.
+     |  En fait, ne marche pas en dehors de Blender.
+     |  
+     |  Data descriptors defined here:
+     |  
+     |  __dict__
+     |      dictionary for instance variables (if defined)
+     |  
+     |  __weakref__
+     |      list of weak references to the object (if defined)
+
+FUNCTIONS
+    droiteAffine(x1, y1, x2, y2)
+        Retourne les valeurs de a et b de y=ax+b
+        à partir des coordonnées de 2 points.
+    
+    print_str_args(*args)
+        Imprime en terminal les variables en argument
+        Les variables doivent être sous forme de string,
+        par exemple
+        print_str_args("a")
+        imprime la variable a qui a une valeur 42
+        a = 42
+    
+    scene_change(sceneOld, sceneNew)
+        End of sceneOld, load sceneNew.
+        Scene must be str: if scene = scene python object, name is scene.name
+
+</code>
+
+====fifolist====
+<code txt>
+CLASSES
+    class PileFIFO(builtins.object)
+     |  Pile FIFO pour faire statistiques sur dernières valeurs.
+     |  
+     |  Methods defined here:
+     |  
+     |  __init__(self, size)
+     |      size définit la hauteur de la pile.
+     |  
+     |  append(self, new)
+     |      Ajoute pour avoir une pile constante de size valeurs.
+     |  
+     |  average_calcul(self)
+     |      Maj de la valeur moyenne de la pile.
+     |  
+     |  inconsistency(self)
+     |      La dernière valeur est-elle cohérente par rapport aux précédentes ?
+     |      à lancer après append et average_calcul
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data descriptors defined here:
+     |  
+     |  __dict__
+     |      dictionary for instance variables (if defined)
+     |  
+     |  __weakref__
+     |      list of weak references to the object (if defined)
+</code>
+
+====mytools====
+<code txt>
+DESCRIPTION
+    Des méthodes souvent appelées par les autres scripts,
+    regroupées dans une class MyTools
+
+CLASSES
+    class MyTools(builtins.object)
+     |  Methods defined here:
+     |  
+     |  create_directory(self, directory)
+     |      Crée le répertoire avec le chemin absolu.
+     |      ex: /media/data/3D/projets/meteo/meteo_forecast/2017_06
+     |  
+     |  data_to_json(self, data)
+     |      Retourne le json des datas
+     |  
+     |  get_absolute_path(self, a_file_or_a_directory)
+     |      Retourne le chemin absolu d'un répertoire ou d'un fichier
+     |      n'importe où.
+     |  
+     |  get_all_files_list(self, root, file_end)
+     |      Lit le dossier et tous les sous-dosssiers.
+     |      Retourne une liste de tous les fichiers avec l'extension file_end
+     |      avec le chemin absolu
+     |      exemple:
+     |          "network/http_download.py"
+     |  
+     |  get_json_file(self, fichier)
+     |      Retourne le json décodé des datas lues
+     |      dans le fichier avec son chemin/nom.
+     |  
+     |  print_all_key_value(self, my_dict)
+     |      Imprime un dict contenant un dict,
+     |      affiche le nombre de clés total.
+     |  
+     |  read_file(self, file_name)
+     |      Retourne les datas lues dans le fichier avec son chemin/nom
+     |      Retourne None si fichier inexistant ou impossible à lire .
+     |  
+     |  run_command_system(self, command)
+     |      Excécute la command shell et reourne la sortie terminal.
+     |      command = ['your_command', 'arg1', 'arg2', ...]
+     |      Ne marche pas:
+     |          resp = subprocess.call(command.split())
+     |  
+     |  write_data_in_file(self, data, fichier)
+     |      Ecrit des data de type string dans le fichier, écrase l'existant.
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data descriptors defined here:
+     |  
+     |  __dict__
+     |      dictionary for instance variables (if defined)
+     |  
+     |  __weakref__
+     |      list of weak references to the object (if defined)
+
+</code>
+
+====http_download====
+<code txt>
+DESCRIPTION
+    Télécharge une url.
+    Peut aussi l'enregister
+
+CLASSES
+    class HttpDownload(builtins.object)
+     |  Télécharge une url.
+     |  
+     |  Retourne
+     |      - un string si text (html)
+     |      - des bytes si fichier
+     |  Enregistre dans un fichier
+     |  
+     |  Usage:
+     |      hd = HttpDownload()
+     |      # recupère la réponse
+     |      resp = hd.get_response(url, timeout=2)
+     |      # ou enregistre          
+     |      hd.save_response(u, timeout=2, name=name)
+     |      # ou les 2
+     |      resp = hd.save_response(u, timeout=2, name=name)
+     |  
+     |  Methods defined here:
+     |  
+     |  decode_or_not(self, response)
+     |      Decode utf-8 si text, rien si fichier.
+     |      Donc text = utf-8, fichier = bytes
+     |  
+     |  get_response(self, someurl, timeout=2)
+     |      Retourne la réponse de la requête, decodée si str
+     |  
+     |  request(self, someurl, timeout=2)
+     |      Télécharge une url.
+     |      Retourne des bytes: https://bit.ly/2wau8j1 ou string vide
+     |  
+     |  save_response(self, someurl, timeout=2, name='toto')
+     |      Enregistre la réponse de la requête à someurl,
+     |      dans un fichier name
+     |      Retourne aussi la réponse.
+     |      Si réponse None, ne fera rien, retourne None
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data descriptors defined here:
+     |  
+     |  __dict__
+     |      dictionary for instance variables (if defined)
+     |  
+     |  __weakref__
+     |      list of weak references to the object (if defined)
+
+FUNCTIONS
+    save_data_in_file(data, fichier, mode)
+        Mode 'w' écrit un string dans le fichier
+        Mode 'wb' écrit des bytes dans le fichier
+        donc enregistre un fichier
+        w ecrase
+        a ajoute
+
+</code>
+
+====tcpclient====
+<code txt>
+CLASSES
+    class TcpClient(builtins.object)
+     |  Envoi et réception sur le même socket en TCP.
+     |  
+     |  Methods defined here:
+     |  
+     |  __init__(self, ip, port)
+     |      Initialize self.  See help(type(self)) for accurate signature.
+     |  
+     |  close_sock(self)
+     |      Fermeture de la socket.
+     |  
+     |  connect_sock(self)
+     |      Connexion de la socket, si ok retoune 1 sinon None
+     |  
+     |  create_socket(self)
+     |      Création du socket sans try, et avec connexion.
+     |  
+     |  listen(self)
+     |      Retourne les data brutes reçues.
+     |  
+     |  reconnect(self)
+     |      Reconnexion.
+     |  
+     |  send(self, msg)
+     |      Envoi d'un message, avec send, msg doit être encodé avant.
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data descriptors defined here:
+     |  
+     |  __dict__
+     |      dictionary for instance variables (if defined)
+     |  
+     |  __weakref__
+     |      list of weak references to the object (if defined)
+
+FUNCTIONS
+    sleep(...)
+        sleep(seconds)
+        
+        Delay execution for a given number of seconds.  The argument may be
+        a floating point number for subsecond precision.
+</code>
+
+
