@@ -20,6 +20,10 @@
 # along with pymultilame.  If not, see <https://www.gnu.org/licenses/>.
 #######################################################################
 
+"""
+Client multicast avec twisted
+"""
+
 
 from twisted.internet.protocol import DatagramProtocol
 from twisted.internet import reactor
@@ -67,7 +71,8 @@ def run_client():
     reactor.run()
 
 def run_server():
-    """We use listenMultiple=True so that we can run MulticastServer.py and
+    """
+    We use listenMultiple=True so that we can run MulticastServer.py and
     MulticastClient.py on same machine.
     """
 

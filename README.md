@@ -11,7 +11,7 @@ Ce module est une amélioration de
 
 qui n'est plus maintenu.
 
-#### Comprend les rubriques
+#### Rubriques proposées
 
 * Blender: Des scripts spécifiques pour le Blender Game Engine 2.7x et qui ne peuvent tourner que dans Blender
 * Twisted: des exemples de twisted en python3
@@ -60,8 +60,8 @@ from pymultilame import Tempo
 from pymultilame import EasyAudio
 from pymultilame import TextureChange
 
-from pymultilame.blendertools import scene_change, droiteAffine, scene_change, print_str_args
-from pymultilame.blendergetobject import get_all_objects, get_all_scenes, get_scene_with_name
+from pymultilame import scene_change, droiteAffine, scene_change, print_str_args
+from pymultilame import get_all_objects, get_all_scenes, get_scene_with_name
 ~~~
 
 ### Licence
@@ -76,14 +76,6 @@ voir le fichier LICENSE
 
 * [Créer son propre package python](https://ressources.labomedia.org/creer_son_propre_package_python)
 * [pymultilame](https://ressources.labomedia.org/pymultilame)
-
-### Conversion de README.md en dokuwiki
-
-pour la page pymultilame du wiki
-
-~~~text
-pandoc README.md -f markdown -t dokuwiki -s -o README.dokuwiki
-~~~
 
 ### Merci à
 

@@ -22,8 +22,9 @@
 
 
 """
-Le fichier ini doit être défini avec son chemin absolu
+Charge une configuration à partir d'un fichier *.ini
 
+Le fichier ini doit être défini avec son chemin absolu
 
 Pour un projet python:
     import os
@@ -43,14 +44,15 @@ from configparser import SafeConfigParser
 __all__ = ['MyConfig']
 
 class MyConfig():
-    """Charge la configuration depuis le fichier *.ini,
+    """
+    Charge la configuration depuis le fichier *.ini,
     sauve les changement de configuration,
     enregistre les changements par section, clé.
     """
 
     def __init__(self, ini_file):
-        """Charge la config depuis un fichier *.ini
-
+        """
+        Charge la config depuis un fichier *.ini
         Le cemin doit être donné avec son chemin absolu.
         """
 
@@ -59,7 +61,9 @@ class MyConfig():
         self.load_config()
 
     def load_config(self):
-        """Lit le fichier *.ini, et copie la config dans un dictionnaire."""
+        """
+        Lit le fichier *.ini, et copie la config dans un dictionnaire.
+        """
 
         parser = SafeConfigParser()
         parser.read(self.ini)
@@ -73,8 +77,8 @@ class MyConfig():
         print("\nConfiguration chargée depuis {}".format(self.ini))
 
     def save_config(self, section, key, value):
-        """Sauvegarde dans le fichioer *.ini  avec section, key, value.
-
+        """
+        Sauvegarde dans le fichioer *.ini  avec section, key, value.
         Uniquement int, float, str
         """
 
@@ -101,9 +105,6 @@ if __name__ == "__main__":
 
     dossier_a = os.getcwd()
     print("dossier_a", dossier_a)
-
-    #/media/data/3D/projets/mylabotools/example.ini
-    #/media/data/3D/projets/mylabotools/tools
 
     ma_config = MyConfig(dossier_a + "/example.ini")
     a = ma_config.conf

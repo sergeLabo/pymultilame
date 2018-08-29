@@ -20,13 +20,19 @@
 # along with pymultilame.  If not, see <https://www.gnu.org/licenses/>.
 #######################################################################
 
+"""
+Socket multicast
+"""
+
 
 import socket
 
 __all__ = ['Multicast']
 
 class Multicast():
-    """ Récupère des datas en Multicast. Sans try:"""
+    """
+    Récupère des datas en Multicast.
+    """
 
     def __init__(self, ip, port, buffer_size=1024):
         self.ANY = "0.0.0.0"
@@ -36,7 +42,9 @@ class Multicast():
         self.create_sock()
 
     def create_sock(self):
-        """Création d'un socket multicast self.sock."""
+        """
+        Création d'un socket multicast self.sock.
+        """
 
         # Création d'un socket
 
@@ -70,7 +78,9 @@ class Multicast():
                self.buffer_size))
 
     def receive(self):
-        """Retourne les datas brutes reçue sur multicast."""
+        """
+        Retourne les datas brutes reçue sur multicast.
+        """
 
         raw_data = None
 
@@ -79,7 +89,9 @@ class Multicast():
         return raw_data
 
     def send_to(self, msg, addr):
-        """Envoi de msg à addr en multicast."""
+        """
+        Envoi de msg à addr en multicast.
+        """
 
         self.sock.sendto(msg, addr)
 

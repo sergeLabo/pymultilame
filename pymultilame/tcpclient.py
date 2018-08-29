@@ -28,7 +28,9 @@ __all__ = ['TcpClient']
 
 
 class TcpClient:
-    """Envoi et réception sur le même socket en TCP."""
+    """
+    Envoi et réception sur le même socket en TCP.
+    """
 
     def __init__(self, ip, port):
 
@@ -40,7 +42,9 @@ class TcpClient:
         self.create_socket()
 
     def create_socket(self):
-        """Création du socket sans try, et avec connexion."""
+        """
+        Création du socket sans try, et avec connexion.
+        """
 
         while not self.sock:
             self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -49,7 +53,9 @@ class TcpClient:
             sleep(0.1)
 
     def connect_sock(self):
-        """Connexion de la socket, si ok retoune 1 sinon None"""
+        """
+        Connexion de la socket, si ok retoune 1 sinon None
+        """
 
         try:
             self.sock.connect(self.server_address)
@@ -60,7 +66,9 @@ class TcpClient:
             return None
 
     def send(self, msg):
-        """Envoi d'un message, avec send, msg doit être encodé avant."""
+        """
+        Envoi d'un message, avec send, msg doit être encodé avant.
+        """
 
         # Création d'un socket si besoin
         if not self.sock:
@@ -76,13 +84,17 @@ class TcpClient:
             self.sock = None
 
     def reconnect(self):
-        """Reconnexion."""
+        """
+        Reconnexion.
+        """
 
         self.sock = None
         self.create_socket()
 
     def close_sock(self):
-        """Fermeture de la socket."""
+        """
+        Fermeture de la socket.
+        """
 
         try:
             self.sock.close()
@@ -92,7 +104,9 @@ class TcpClient:
         self.sock = None
 
     def listen(self):
-        """Retourne les data brutes reçues."""
+        """
+        Retourne les data brutes reçues.
+        """
 
         raw_data = None
 

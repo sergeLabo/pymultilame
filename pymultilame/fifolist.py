@@ -26,7 +26,8 @@ __all__ = ['PileFIFO']
 
 class PileFIFO():
     """
-    Pile FIFO pour faire statistiques sur dernières valeurs.
+    Pile FIFO pour faire des statistiques
+    sur les dernières valeurs d'une variable.
     """
     def __init__(self, size):
         """

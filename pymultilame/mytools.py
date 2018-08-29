@@ -54,7 +54,8 @@ class MyTools:
         return file_list
         
     def read_file(self, file_name):
-        """Retourne les datas lues dans le fichier avec son chemin/nom
+        """
+        Retourne les datas lues dans le fichier avec son chemin/nom
         Retourne None si fichier inexistant ou impossible à lire .
         """
 
@@ -95,7 +96,8 @@ class MyTools:
         return data
 
     def print_all_key_value(self, my_dict):
-        """Imprime un dict contenant un dict,
+        """
+        Imprime un dict contenant un dict,
         affiche le nombre de clés total.
         """
 
@@ -110,7 +112,8 @@ class MyTools:
         print("pour un théorique par jour de =", 24*1)
 
     def create_directory(self, directory):
-        """Crée le répertoire avec le chemin absolu.
+        """
+        Crée le répertoire avec le chemin absolu.
         ex: /media/data/3D/projets/meteo/meteo_forecast/2017_06
         """
 
@@ -121,7 +124,8 @@ class MyTools:
             pass
 
     def get_absolute_path(self, a_file_or_a_directory):
-        """Retourne le chemin absolu d'un répertoire ou d'un fichier
+        """
+        Retourne le chemin absolu d'un répertoire ou d'un fichier
         n'importe où.
         """
 
@@ -174,5 +178,5 @@ def test_get_all_files_list():
 
 if __name__ == "__main__":
 
-    #test_get_all_files_list()
+    test_get_all_files_list()
     test_run_command_system()

@@ -23,6 +23,9 @@
 """
 Récupère la doc de tous les scripts pour le wiki
 et enregistre dans tools/docstring.txt
+TODO:
+    pour les scripts qui importent twisted ou pour OSC3, la doc est très longue.
+    Voir pour que pydoc3.5 ne prennent pas en compte les héritages.
 """
 
 import re

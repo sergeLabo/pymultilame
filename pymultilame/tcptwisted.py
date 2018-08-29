@@ -28,7 +28,7 @@ Avec twisted en python3:
         * un client qui se reconnecte
 
 Le serveur et le client ne peuvent pas tourner ensemble dans ce script,
-    il n"y a qu"un seul reactor !
+    il n'y a qu"un seul reactor !
 """
 
 
@@ -41,7 +41,8 @@ from twisted.internet import reactor
 
 
 class MyTCPServer(Protocol):
-    """Attribut de class: nb_protocol
+    """
+    Attribut de class: nb_protocol
     Un protocol par client connecté,
     chaque protocol est  une  instance indépendante
     """
@@ -53,7 +54,8 @@ class MyTCPServer(Protocol):
         print("Twisted TCP Serveur créé")
 
     def connectionMade(self):
-        """self.factory was set by the factory"s default buildProtocol
+        """
+        self.factory was set by the factory"s default buildProtocol
         self.transport.loseConnection() pour fermer
         """
 
@@ -85,6 +87,7 @@ class MyTCPServerFactory(Factory):
 
 
 class MyTcpClient(Protocol):
+    
     def __init__(self):
         print("Un protocol client créé")
 
@@ -95,6 +98,7 @@ class MyTcpClient(Protocol):
 
 
 class MyTcpClientFactory(ReconnectingClientFactory):
+    
     def startedConnecting(self, connector):
         print("Essai de connexion ...")
 
@@ -114,12 +118,14 @@ class MyTcpClientFactory(ReconnectingClientFactory):
 
 
 def run_tcp_server(port):
+    
     endpoint = TCP4ServerEndpoint(reactor, port)
     endpoint.listen(MyTCPServerFactory())
     reactor.run()
 
 def client(host, port):
-    """builtins.ValueError: signal only works in main thread
+    """
+    builtins.ValueError: signal only works in main thread
     http://stackoverflow.com/questions/12917980/non-blocking-server-in-twisted
     """
 
@@ -129,12 +135,14 @@ def client(host, port):
     reactor.run(installSignalHandlers=False)
 
 def client_thread(host, port):
+    
     thread_C = threading.Thread(target=client, args=(host, port))
     print("Thread Twisted  Client ....")
     thread_C.start()
 
 def main(opt):
-    """Le serveur et client ne peuvent pas tourner dans le même script,
+    """
+    Le serveur et client ne peuvent pas tourner dans le même script,
     il n"y a qu"un seul reactor !
     """
 

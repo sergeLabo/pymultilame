@@ -5,15 +5,17 @@ FUNCTIONS
         Retourne une liste de tous les objets des scènes actives
     
     get_all_scenes()
+        Récupération des scènes
     
     get_scene_with_name(scn)
+        Récupération de la scène avec le nom
 
 </code>
 
 ====blendersound====
 <code txt>
 DESCRIPTION
-    Class générique qui permet de gérer facilement le son
+    Classe générique qui permet de gérer facilement le son
     dans le Blender Game Engine BGE.
     
     gl est le GameLogic, get with : from bge import logic as gl
@@ -37,15 +39,7 @@ CLASSES
         Factory
     
     class EasyAudio(builtins.dict)
-     |  dict() -> new empty dictionary
-     |  dict(mapping) -> new dictionary initialized from a mapping object's
-     |      (key, value) pairs
-     |  dict(iterable) -> new dictionary initialized as if via:
-     |      d = {}
-     |      for k, v in iterable:
-     |          d[k] = v
-     |  dict(**kwargs) -> new dictionary initialized with the name=value pairs
-     |      in the keyword argument list.  For example:  dict(one=1, two=2)
+     |  Crée une usine pour chaque son, dans un dict.
      |  
      |  Method resolution order:
      |      EasyAudio
@@ -59,6 +53,8 @@ CLASSES
      |      path example "//audio/comment/"
     
     class Factory(builtins.object)
+     |  Class usine pour chaque son.
+     |  
      |  Methods defined here:
      |  
      |  __init__(self, audio_file_path, buffered=True)
@@ -66,17 +62,22 @@ CLASSES
      |      buffered = Boolean
      |  
      |  pause(self)
+     |      Pause
      |  
      |  play(self, volume=1)
      |      play the audio, this return a handle to control play/pause/stop
      |  
      |  repeat(self, volume=1)
+     |      Repeat
      |  
      |  set_pitch(self, pitch)
+     |      Hauteur
      |  
      |  set_volume(self, vol)
+     |      Volume
      |  
      |  stop(self)
+     |      Stop
 
 </code>
 
@@ -90,7 +91,7 @@ CLASSES
      |      * tempo_liste = [("intro", 60), ("print", 12), ("sound", 6)]
      |  Chaque objet tempo:
      |      * tempoDict = Tempo(tempo_liste)
-     |  Update des tempo:
+     |  Update des tempo à insérer dans un script qui tourne à chaque frame:
      |      * tempoDict.update()
      |  Appel d'une tempo:
      |      * tempoDict["intro"].tempo
@@ -137,6 +138,10 @@ CLASSES
      |  update(self)
      |      J'incrémente si pas de verrou. Si verrou, je ne fais rien
 
+FUNCTIONS
+    test()
+        Tourne en dehors de Blender.
+
 </code>
 
 ====blendertexture====
@@ -165,7 +170,7 @@ CLASSES
      |      
      |      Répéter la fonction plusieurs fois (ex 5x) pour que
      |      le changement marche.
-     |      Tous les objecy avec le matériau seront changés.
+     |      Tous les object avec le matériau seront changés.
 
 </code>
 
@@ -194,6 +199,7 @@ FUNCTIONS
 <code txt>
 FUNCTIONS
     disable_viewport(cam)
+        Disable
     
     enable_full_viewport(cam)
         cam is blender object
@@ -213,7 +219,8 @@ FUNCTIONS
 <code txt>
 CLASSES
     class PileFIFO(builtins.object)
-     |  Pile FIFO pour faire statistiques sur dernières valeurs.
+     |  Pile FIFO pour faire des statistiques
+     |  sur les dernières valeurs d'une variable.
      |  
      |  Methods defined here:
      |  
@@ -299,7 +306,7 @@ FUNCTIONS
 <code txt>
 CLASSES
     class Multicast(builtins.object)
-     |  Récupère des datas en Multicast. Sans try:
+     |  Récupère des datas en Multicast.
      |  
      |  Methods defined here:
      |  
@@ -320,6 +327,7 @@ CLASSES
 ====myconfig====
 <code txt>
 DESCRIPTION
+    Le fichier ini doit être défini avec son chemin absolu
     
     Pour un projet python:
         import os
@@ -340,7 +348,6 @@ CLASSES
      |  
      |  __init__(self, ini_file)
      |      Charge la config depuis un fichier *.ini
-     |      
      |      Le cemin doit être donné avec son chemin absolu.
      |  
      |  load_config(self)
@@ -348,7 +355,6 @@ CLASSES
      |  
      |  save_config(self, section, key, value)
      |      Sauvegarde dans le fichioer *.ini  avec section, key, value.
-     |      
      |      Uniquement int, float, str
 
 </code>
@@ -441,16 +447,11 @@ DESCRIPTION
     Recréer un socket avant chaque envoi ou réception, résoud les problèmes
     de réseau, ça se reconnecte tout seul.
     Par contre, le port éphémère du recvfrom changera à chaque fois.
-    
-    Dans Blender, où il est impossible de créer un thread, socketserver,
-    ou d'utiliser asyncio, c'est très adapté.
-    
-    Doit encore être testé, en particulier si défaut réseau, serveur etc ...
 
 CLASSES
     class UdpClient(builtins.object)
      |  Envoi et reception en UDP.
-     |  Cette classe n'encode pas le message à envoyer, sans try: .
+     |  Cette classe n'encode pas le message à envoyer.
      |  
      |  Methods defined here:
      |  
