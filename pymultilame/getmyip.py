@@ -25,12 +25,14 @@ import os, sys
 import subprocess, re
 from functools import reduce
 
+__all__ = ['get_my_ip']
 
 def get_my_ip():
-    '''Retourne l'adresse ip du pc sur le réseau local.
+    """
+    Retourne l'adresse ip du pc sur le réseau local.
     Valable pour python 3.x
     Non valable sur android
-    '''
+    """
 
     #A generator that returns stripped lines of output from "ip address show"
     iplines = (line.strip() for line in subprocess.getoutput("ip address show")\

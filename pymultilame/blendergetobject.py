@@ -22,8 +22,12 @@
 
 
 """
-Utilisation dans blender
+Récupération des objets et scènes dans Blender.
 """
+
+__all__ = [ 'get_all_objects',
+            'get_all_scenes',
+            'get_scene_with_name']
 
 
 class VirtualGl:
@@ -32,7 +36,6 @@ class VirtualGl:
     Cette class remplace
     from bge import logic
     en dehors du Game Engine.
-    En fait, ne marche pas en dehors de Blender.
     """
     pass
 
@@ -43,8 +46,9 @@ except:
 
 
 def get_all_objects():
-    """Retourne une liste de tous les objets des scènes actives
-    TODO à vérifier dans plusieurs projets"""
+    """
+    Retourne une liste de tous les objets des scènes actives
+    """
 
     activeScenes, scene_name = get_all_scenes()
 
@@ -57,7 +61,9 @@ def get_all_objects():
     return all_obj
 
 def get_all_scenes():
-
+    """
+    Récupération des scènes
+    """
     # Liste des objets scènes
     activeScenes = gl.getSceneList()
 
@@ -69,7 +75,9 @@ def get_all_scenes():
     return activeScenes, scene_name
 
 def get_scene_with_name(scn):
-
+    """
+    Récupération de la scène avec le nom
+    """
     activeScenes, scene_name = get_all_scenes()
     if scn in scene_name:
         return activeScenes[scene_name.index(scn)]

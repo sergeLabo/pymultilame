@@ -2,12 +2,14 @@
 
 ### Des scripts python pour les tâches répétitives.
 
-    Ce module propose les outils les plus courrant que j'utilise,
-    à utiliser en import ou en recopiant des bouts de code.
+Ce module propose les outils les plus courrant que j'utilise,
+à utiliser en import ou en recopiant des bouts de code.
 
-    Ce module est une amélioration de
-    [mylabotools](https://github.com/sergeLabo/mylabotools)
-    qui n'est plus maintenu.
+Ce module est une amélioration de
+
+* [mylabotools](https://github.com/sergeLabo/mylabotools)
+
+qui n'est plus maintenu.
 
 #### Comprend les rubriques
 
@@ -44,8 +46,22 @@ sudo pip3 install --upgrade git+https://github.com/sergeLabo/pymultilame.git#egg
 ### Utilisation
 
 ~~~python
-from pymultilame.blendertools import scene_change
 from pymultilame import HttpDownload
+from pymultilame import MyTools
+from pymultilame import TcpClient
+from pymultilame import MyConfig
+from pymultilame import get_my_ip
+from pymultilame import Multicast
+from pymultilame import UdpClient
+from pymultilame import PileFIFO
+from pymultilame import Multicast
+
+from pymultilame import Tempo
+from pymultilame import EasyAudio
+from pymultilame import TextureChange
+
+from pymultilame.blendertools import scene_change, droiteAffine, scene_change, print_str_args
+from pymultilame.blendergetobject import get_all_objects, get_all_scenes, get_scene_with_name
 ~~~
 
 ### Licence
@@ -62,6 +78,8 @@ voir le fichier LICENSE
 * [pymultilame](https://ressources.labomedia.org/pymultilame)
 
 ### Conversion de README.md en dokuwiki
+
+pour la page pymultilame du wiki
 
 ~~~text
 pandoc README.md -f markdown -t dokuwiki -s -o README.dokuwiki

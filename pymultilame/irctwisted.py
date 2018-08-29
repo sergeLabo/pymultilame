@@ -24,9 +24,9 @@
 # See LICENSE for details.
 
 
-'''
+"""
 IRC bot avec twisted en python 3.x
-'''
+"""
 
 
 import time, sys
@@ -38,7 +38,7 @@ from twisted.python import log
 
 
 class IrcTwisted(irc.IRCClient):
-    '''An IRC bot.'''
+    """An IRC bot."""
 
     #nickname = "twistedbot"
 
@@ -54,39 +54,39 @@ class IrcTwisted(irc.IRCClient):
 
     # callbacks for events
     def signedOn(self):
-        '''Called when bot has succesfully signed on to server.'''
+        """Called when bot has succesfully signed on to server."""
 
         self.join(self.factory.channel)
 
     def joined(self, channel):
-        '''This will get called when the bot joins the channel.'''
+        """This will get called when the bot joins the channel."""
 
         print("Le bot a rejoint le channel {}".format(channel))
 
     def privmsg(self, user, channel, msg):
-        '''Réception d'un message public ou privé.'''
+        """Réception d'un message public ou privé."""
 
         print(msg)
 
         return msg
 
     def action(self, user, channel, msg):
-        '''This will get called when the bot sees someone do an action.'''
+        """This will get called when the bot sees someone do an action."""
 
         user = user.split('!', 1)[0]
 
     # irc callbacks
     def irc_NICK(self, prefix, params):
-        '''Called when an IRC user changes their nickname.'''
+        """Called when an IRC user changes their nickname."""
 
         old_nick = prefix.split('!')[0]
         new_nick = params[0]
 
 
 class IrcTwistedFactory(protocol.ClientFactory):
-    '''A factory for IrcTwisteds.
+    """A factory for IrcTwisteds.
     A new protocol instance will be created each time we connect to the server.
-    '''
+    """
 
     def __init__(self, channel):
         self.channel = channel
@@ -97,7 +97,7 @@ class IrcTwistedFactory(protocol.ClientFactory):
         return p
 
     def clientConnectionLost(self, connector, reason):
-        '''If we get disconnected, reconnect to server.'''
+        """If we get disconnected, reconnect to server."""
 
         connector.connect()
 

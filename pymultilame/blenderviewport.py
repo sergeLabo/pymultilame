@@ -20,6 +20,12 @@
 # along with pymultilame.  If not, see <https://www.gnu.org/licenses/>.
 #######################################################################
 
+__all__ = [ 'enable_full_viewport',
+            'enable_half_viewport',
+            'enable_stereo_viewport',
+            'enable_quad_viewport',
+            'disable_viewport'
+            ]
 
 class VirtualRender:
     """
@@ -37,7 +43,9 @@ except:
 
 
 def enable_full_viewport(cam):
-    '''cam is blender object'''
+    """
+    cam is blender object
+    """
 
     W = render.getWindowWidth()
     H = render.getWindowHeight()
@@ -46,7 +54,9 @@ def enable_full_viewport(cam):
     print("Camera {0} is full viewport".format(cam.name))
 
 def enable_half_viewport(cam1, cam2):
-    '''cam1 and 2 are blender objects'''
+    """
+    cam1 and 2 are blender objects
+    """
 
     W = render.getWindowWidth()
     H = render.getWindowHeight()
@@ -58,7 +68,9 @@ def enable_half_viewport(cam1, cam2):
     print("Cameras {0} and {1} are half viewport".format(cam1.name, cam2.name))
 
 def enable_stereo_viewport(cam1, cam2):
-    '''cam1 and 2 are blender objects'''
+    """
+    cam1 and 2 are blender objects
+    """
 
     W = render.getWindowWidth()
     H = render.getWindowHeight()
@@ -70,7 +82,9 @@ def enable_stereo_viewport(cam1, cam2):
     print("Cameras {0} and {1} are stereo viewport".format(cam1.name, cam2.name))
 
 def enable_quad_viewport(cam1, cam2, cam3, cam4):
-    '''cam1 2 3 4 are blender objects'''
+    """
+    cam1 2 3 4 are blender objects
+    """
 
     W = render.getWindowWidth()
     H = render.getWindowHeight()
@@ -87,5 +101,8 @@ def enable_quad_viewport(cam1, cam2, cam3, cam4):
     print("Cameras {0} {1} {2} {3} are quad viewport".format(cam1.name, cam2.name, cam3.name, cam4.name))
 
 def disable_viewport(cam):
+    """
+    Disable
+    """
     cam.useViewport = False
     print("Camera ", cam.name, "is disable")

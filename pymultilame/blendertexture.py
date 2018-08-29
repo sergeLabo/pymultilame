@@ -28,7 +28,7 @@ Ce script ne peut tourner que dans blender.
 """
 
 
-
+__all__ = ['TextureChange']
 
 class VirtualTexture:
     """
@@ -43,15 +43,17 @@ except:
 
     
 class TextureChange():
-    ''' Classe générique utilisable dans d'autres projects,
-        pour changer une texture d'un objet.
-    '''
+    """
+    Classe générique utilisable dans d'autres projects,
+    pour changer une texture d'un objet.
+    """
 
     def __init__(self, obj, old_tex):
-        ''' obj     = objet concerné
-            old_tex = image de la texture originale, ex "danseur2.png"
-            new_tex = "//textures/perso.png"
-        '''
+        """
+        obj     = objet concerné
+        old_tex = image de la texture originale, ex "danseur2.png"
+        new_tex = "//textures/perso.png"
+        """
 
         self.old_tex = old_tex
         # ID de la texture existante
@@ -60,12 +62,13 @@ class TextureChange():
         self.obj_texture = texture.Texture(obj, self.ID)
 
     def texture_new(self, new_tex):
-        ''' Application de la nouvelle image de la texture.
+        """
+        Application de la nouvelle image de la texture.
 
         Répéter la fonction plusieurs fois (ex 5x) pour que
         le changement marche.
-        Tous les objecy avec le matériau seront changés.
-        '''
+        Tous les object avec le matériau seront changés.
+        """
 
         # Nouvelle source
         url = gl.expandPath(new_tex)
@@ -78,8 +81,9 @@ class TextureChange():
         self.obj_texture.refresh(False)
 
     def texture2old(self):
-        ''' Effacement de l'objet python, pour retourner à l'ancienne texture.
-        '''
+        """
+        Effacement de l'objet python, pour retourner à l'ancienne texture.
+        """
 
         try:
             del self.obj_texture

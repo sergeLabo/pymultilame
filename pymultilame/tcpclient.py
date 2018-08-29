@@ -24,6 +24,8 @@
 import socket
 from time import sleep
 
+__all__ = ['TcpClient']
+
 
 class TcpClient:
     """Envoi et réception sur le même socket en TCP."""

@@ -2,14 +2,14 @@
 
 ==== Des scripts python pour les tâches répétitives. ====
 
-<code>
-Ce module propose les outils les plus courrant que j'utilise,
-à utiliser en import ou en recopiant des bouts de code.
+Ce module propose les outils les plus courrant que j'utilise, à utiliser en import ou en recopiant des bouts de code.
 
 Ce module est une amélioration de
-[mylabotools](https://github.com/sergeLabo/mylabotools)
+
+  * [[https://github.com/sergeLabo/mylabotools|mylabotools]]
+
 qui n'est plus maintenu.
-</code>
+
 === Comprend les rubriques ===
 
   * Blender: Des scripts spécifiques pour le Blender Game Engine 2.7x et qui ne peuvent tourner que dans Blender
@@ -41,8 +41,22 @@ sudo pip3 install --upgrade git+https://github.com/sergeLabo/pymultilame.git#egg
 ==== Utilisation ====
 
 <code python>
-from pymultilame.blendertools import scene_change
 from pymultilame import HttpDownload
+from pymultilame import MyTools
+from pymultilame import TcpClient
+from pymultilame import MyConfig
+from pymultilame import get_my_ip
+from pymultilame import Multicast
+from pymultilame import UdpClient
+from pymultilame import PileFIFO
+from pymultilame import Multicast
+
+from pymultilame import Tempo
+from pymultilame import EasyAudio
+from pymultilame import TextureChange
+
+from pymultilame.blendertools import scene_change, droiteAffine, scene_change, print_str_args
+from pymultilame.blendergetobject import get_all_objects, get_all_scenes, get_scene_with_name
 </code>
 ==== Licence ====
 
@@ -58,6 +72,8 @@ voir le fichier LICENSE
   * [[https://ressources.labomedia.org/pymultilame|pymultilame]]
 
 ==== Conversion de README.md en dokuwiki ====
+
+pour la page pymultilame du wiki
 
 <code>
 pandoc README.md -f markdown -t dokuwiki -s -o README.dokuwiki

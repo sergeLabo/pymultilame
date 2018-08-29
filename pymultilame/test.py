@@ -2,8 +2,6 @@
 # -*- coding: UTF-8 -*-
 
 
-import pymultilame
-
 from pymultilame import HttpDownload
 from pymultilame import MyTools
 from pymultilame import TcpClient
@@ -17,6 +15,9 @@ from pymultilame import Multicast
 from pymultilame import Tempo
 from pymultilame import EasyAudio
 from pymultilame import TextureChange
-from pymultilame.blendertools import scene_change
+
+from pymultilame import scene_change, droiteAffine, scene_change, print_str_args
+from pymultilame import get_all_objects, get_all_scenes, get_scene_with_name
+
 
 print('Tous les imports sont ok')

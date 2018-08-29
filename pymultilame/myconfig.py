@@ -40,6 +40,7 @@ import os
 import ast
 from configparser import SafeConfigParser
 
+__all__ = ['MyConfig']
 
 class MyConfig():
     """Charge la configuration depuis le fichier *.ini,

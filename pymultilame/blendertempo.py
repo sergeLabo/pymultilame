@@ -22,7 +22,7 @@
 
 
 """
-Class utilisable pour des tempo et compteur
+Class utilisable pour des tempo et compteur dans Blender.
 """
 
 class VirtualGl:
@@ -31,7 +31,6 @@ class VirtualGl:
     Cette class remplace
     from bge import logic
     en dehors du Game Engine.
-    En fait, ne marche pas en dehors de Blender.
     """
     pass
 
@@ -40,18 +39,23 @@ try:
 except:
     gl = VirtualGl()
 
-    
+
+__all__ = ['Tempo', 'TempoFactory', 'test']
+
+
 class TempoFactory():
-    """Les tempos sont en fait des compteurs qui sont mis à jour à chaque
+    """
+    Les tempos sont en fait des compteurs qui sont mis à jour à chaque
     frames de Blender avec update.
     """
 
     def __init__(self, periode=60):
-        '''Paramètres:
-    période: la tempo est remise à zéro si periode atteind, -1 = infinite loop
-    pas: incrément de la tempo, par défaut=1, aucun intérêt de changer le pas
-    verrou: si verrou, pas d'incrémentation.
-    '''
+        """
+        Paramètres:
+        période: la tempo est remise à zéro si periode atteind, -1 = infinite loop
+        pas: incrément de la tempo, par défaut=1, aucun intérêt de changer le pas
+        verrou: si verrou, pas d'incrémentation.
+        """
 
         self.periode = periode
         self.verrou = False
@@ -59,22 +63,27 @@ class TempoFactory():
         self.tempo = 0
 
     def lock(self):
-        '''Verrou, je bloque'''
-
+        """
+        Verrou, je bloque
+        """
         self.verrou = True
 
     def unlock(self):
-        '''Pas de verrou, je peux incrémenter'''
-
+        """
+        Pas de verrou, je peux incrémenter
+        """
         self.verrou = False
 
     def reset(self):
-        '''Remise à zéro de la tempo'''
-
+        """
+        Remise à zéro de la tempo
+        """
         self.tempo = 0
 
     def update(self):
-        '''J'incrémente si pas de verrou. Si verrou, je ne fais rien'''
+        """
+        J'incrémente si pas de verrou. Si verrou, je ne fais rien
+        """
 
         if not self.verrou:
             self.tempo += self.pas
@@ -85,16 +94,17 @@ class TempoFactory():
 
 
 class Tempo(dict):
-    ''' Création des tempos définies dans une liste de tuple:
-            * tempo_liste = [("intro", 60), ("print", 12), ("sound", 6)]
-        Chaque objet tempo:
-            * tempoDict = Tempo(tempo_liste)
-        Update des tempo:
-            * tempoDict.update()
-        Appel d'une tempo:
-            * tempoDict["intro"].tempo
-        Voir exemple test() du __main__
-    '''
+    """
+    Création des tempos définies dans une liste de tuple:
+        * tempo_liste = [("intro", 60), ("print", 12), ("sound", 6)]
+    Chaque objet tempo:
+        * tempoDict = Tempo(tempo_liste)
+    Update des tempo à insérer dans un script qui tourne à chaque frame:
+        * tempoDict.update()
+    Appel d'une tempo:
+        * tempoDict["intro"].tempo
+    Voir exemple test() du __main__
+    """
     def __init__(self, tempoList):
         self.tempoList = tempoList
         for t in self.tempoList:
@@ -105,37 +115,40 @@ class Tempo(dict):
             self[t[0]].update()
 
 
-if __name__ == "__main__":
+def test():
+    """
+    Tourne en dehors de Blender.
+    """
     # Only to test
     from time import sleep
 
-    def test():
+    gl.init_tempo = False
 
-        gl.init_tempo = False
+    while True:
+        # Simulation de la pulsation de Blender à 60 fps
+        sleep(0.5)
+        if not gl.init_tempo:
+            # Création des objects
+            tempo_liste = [("intro", 60), ("print", 12), ("sound", 6)]
+            tempoDict = Tempo(tempo_liste)
+            print(tempoDict)
+            gl.init_tempo = True
 
-        while True:
-            # Simulation de la pulsation de Blender à 60 fps
-            sleep(0.5)
-            if not gl.init_tempo:
-                # Création des objects
-                tempo_liste = [("intro", 60), ("print", 12), ("sound", 6)]
-                tempoDict = Tempo(tempo_liste)
-                print(tempoDict)
-                gl.init_tempo = True
+        if gl.init_tempo:
+            # Incrémentation de toutes les tempos, sauf les locked
+            tempoDict.update()
 
-            if gl.init_tempo:
-                # Incrémentation de toutes les tempos, sauf les locked
-                tempoDict.update()
+            # Début des tests
+            if tempoDict["intro"].tempo == 12:
+                tempoDict["print"].lock()
+            if tempoDict["intro"].tempo == 24:
+                tempoDict["print"].unlock()
+            if tempoDict["intro"].tempo == 30:
+                tempoDict["print"].reset()
 
-                # Début des tests
-                if tempoDict["intro"].tempo == 12:
-                    tempoDict["print"].lock()
-                if tempoDict["intro"].tempo == 24:
-                    tempoDict["print"].unlock()
-                if tempoDict["intro"].tempo == 30:
-                    tempoDict["print"].reset()
-
-            print(tempoDict["intro"].tempo, tempoDict["print"].tempo,
-                                                tempoDict["sound"].tempo)
+        print(tempoDict["intro"].tempo, tempoDict["print"].tempo,
+                                            tempoDict["sound"].tempo)
+                                                
+if __name__ == "__main__":
 
     test()

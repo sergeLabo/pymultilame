@@ -21,18 +21,26 @@
 #######################################################################
 
 
-class PileFIFO():
-    '''Pile FIFO pour faire statistiques sur dernières valeurs.'''
+__all__ = ['PileFIFO']
 
+
+class PileFIFO():
+    """
+    Pile FIFO pour faire statistiques sur dernières valeurs.
+    """
     def __init__(self, size):
-        '''size définit la hauteur de la pile.'''
+        """
+        size définit la hauteur de la pile.
+        """
 
         self.queue = []
         self.size = size
         self.average = 0
 
     def append(self, new):
-        '''Ajoute pour avoir une pile constante de size valeurs.'''
+        """
+        Ajoute pour avoir une pile constante de size valeurs.
+        """
 
         # Ajout dans la liste à la fin
         self.queue.append(new)
@@ -47,8 +55,9 @@ class PileFIFO():
 
 
     def average_calcul(self):
-        '''Maj de la valeur moyenne de la pile.'''
-
+        """
+        Maj de la valeur moyenne de la pile.
+        """
         somme = 0
         for i in range(len(self.queue)):
             somme += self.queue[i]
@@ -58,8 +67,10 @@ class PileFIFO():
             self.average = somme / len(self.queue)
 
     def inconsistency(self):
-        '''La dernière valeur est-elle cohérente par rapport aux précédentes ?
-        à lancer après append et average_calcul'''
+        """
+        La dernière valeur est-elle cohérente par rapport aux précédentes ?
+        à lancer après append et average_calcul
+        """
 
         nb = len(self.queue)
         diff = abs((self.queue[nb - 1] - self.average) / self.average)

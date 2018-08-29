@@ -23,6 +23,7 @@
 
 import socket
 
+__all__ = ['Multicast']
 
 class Multicast():
     """ Récupère des datas en Multicast. Sans try:"""

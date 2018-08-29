@@ -21,7 +21,7 @@
 #######################################################################
 
 
-'''
+"""
 
 Recréer un socket avant chaque envoi ou réception, résoud les problèmes
 de réseau, ça se reconnecte tout seul.
@@ -32,22 +32,22 @@ ou d'utiliser asyncio, c'est très adapté.
 
 Doit encore être testé, en particulier si défaut réseau, serveur etc ...
 
-'''
+"""
 
 import socket
 
-
+__all__ = ['UdpClient']
 
 class UdpClient():
-    '''Envoi et reception en UDP.
+    """Envoi et reception en UDP.
     Cette classe n'encode pas le message à envoyer, sans try: .
-    '''
+    """
 
     def __init__(self, buffer_size=1024, timeout=0.01):
-        '''Création d'un socket UDP.
+        """Création d'un socket UDP.
         buffer_size = entier, permet de vider le buffer à chaque lecture,
         pour avoir toujours la dernière valeur.
-        '''
+        """
 
         self.buffer_size = buffer_size
         self.timeout = timeout
@@ -67,22 +67,22 @@ class UdpClient():
         self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_RCVBUF, self.buffer_size)
 
     def bind(self, addr):
-        '''Quelle est la différence avec connect ?'''
+        """Quelle est la différence avec connect ?"""
 
         self.sock.bind(addr)
 
     def connect(self, addr):
-        '''Connexion à l'adresse pour recevoir addr = tuple.'''
+        """Connexion à l'adresse pour recevoir addr = tuple."""
 
         self.sock.connect(addr)
 
     def send_to(self, req, address):
-        '''Envoi à l'adresse = (ip, port).'''
+        """Envoi à l'adresse = (ip, port)."""
 
         self.sock.sendto(req, address)
 
     def listen(self):
-        '''Retourne les datas et l'adresse reçue.'''
+        """Retourne les datas et l'adresse reçue."""
 
         raw_data, addr = self.sock.recvfrom(self.buffer_size)
 

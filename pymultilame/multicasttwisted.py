@@ -67,9 +67,9 @@ def run_client():
     reactor.run()
 
 def run_server():
-    '''We use listenMultiple=True so that we can run MulticastServer.py and
+    """We use listenMultiple=True so that we can run MulticastServer.py and
     MulticastClient.py on same machine.
-    '''
+    """
 
     reactor.listenMulticast(8005, MulticastServer(), listenMultiple=True)
     reactor.run()
@@ -85,11 +85,11 @@ def main(opt):
 
 if __name__ == '__main__':
 
-    print('''\n\nLancement du script avec:
+    print("""\n\nLancement du script avec:
     python3 labmulticasttwisted.py server
     ou
     python3 labmulticasttwisted.py client\n\n
-    ''')
+    """)
 
     opt = sys.argv[1]
     main(opt)

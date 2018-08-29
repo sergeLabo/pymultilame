@@ -22,7 +22,7 @@
 
 
 """
-Class générique qui permet de gérer facilement le son
+Classe générique qui permet de gérer facilement le son
 dans le Blender Game Engine BGE.
 
 gl est le GameLogic, get with : from bge import logic as gl
@@ -44,6 +44,8 @@ Appel de cette classe où tous les sons sont dans une liste avec :
 """
 
 from time import sleep
+
+__all__ = ['EasyAudio', 'Factory']
 
 
 class VirtualGl:
@@ -71,11 +73,16 @@ try:
 except:
     aud = VirtualAud()
 
-class Factory():
 
+class Factory():
+    """
+    Class usine pour chaque son.
+    """
     def __init__(self, audio_file_path, buffered=True):
-        ''' audio_file_path = "//audio/comment/boum.ogg"
-            buffered = Boolean '''
+        """
+        audio_file_path = "//audio/comment/boum.ogg"
+        buffered = Boolean
+        """
         self.device = aud.device()
         # Dictionnaire des fichiers son
         self.sound = gl.expandPath(audio_file_path)
@@ -94,19 +101,27 @@ class Factory():
                 print("Pas de fichier son :", self.sound)
 
     def set_volume(self, vol):
+        """
+        Volume
+        """
         if not self.buffered:
             self.handle.volume = vol
         if self.buffered:
             self.handle_buffered.volume = vol
 
     def set_pitch(self, pitch):
+        """
+        Hauteur
+        """
         if not self.buffered:
             self.handle.pitch = pitch
         if self.buffered:
             self.handle_buffered.pitch = pitch
 
     def play(self, volume=1):
-        '''play the audio, this return a handle to control play/pause/stop'''
+        """
+        play the audio, this return a handle to control play/pause/stop
+        """
 
         if not self.buffered:
             self.handle = self.device.play(self.factory)
@@ -116,6 +131,9 @@ class Factory():
             self.handle_buffered.volume = volume
 
     def repeat(self, volume=1):
+        """
+        Repeat
+        """
         if not self.buffered:
             self.handle = self.device.play(self.factory)
             self.handle.loop_count = -1
@@ -126,12 +144,18 @@ class Factory():
             self.handle_buffered.volume = volume
 
     def pause(self):
+        """
+        Pause
+        """
         if not self.buffered:
             self.handle.pause()
         if self.buffered:
             self.handle_buffered.pause()
 
     def stop(self):
+        """
+        Stop
+        """
         if not self.buffered:
             self.handle.stop()
         if self.buffered:
@@ -139,11 +163,14 @@ class Factory():
 
 
 class EasyAudio(dict):
-
+    """
+    Crée une usine pour chaque son, dans un dict.
+    """
     def __init__(self, soundList, path, buffered=True):
-        ''' soundList = ["boum", ...]
-            path example "//audio/comment/"
-        '''
+        """
+        soundList = ["boum", ...]
+        path example "//audio/comment/"
+        """
 
         for s in soundList:
             audio_file_path = path + s + ".ogg"

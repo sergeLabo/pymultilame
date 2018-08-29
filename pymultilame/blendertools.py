@@ -23,13 +23,17 @@
 
 import inspect
 
+__all__ = [ 'droiteAffine',
+            'scene_change',
+            'print_str_args']
+
 class VirtualGl:
     """
     bge = blender game engine
     Cette class remplace
     from bge import logic
     en dehors du Game Engine.
-    En fait, ne marche pas en dehors de Blender.
+    
     """
     pass
 
@@ -40,8 +44,9 @@ except:
 
     
 def droiteAffine(x1, y1, x2, y2):
-    """Retourne les valeurs de a et b de y=ax+b
-        à partir des coordonnées de 2 points.
+    """
+    Retourne les valeurs de a et b de y=ax+b
+    à partir des coordonnées de 2 points.
     """
 
     a = (y2 - y1) / (x2 - x1)
@@ -49,10 +54,10 @@ def droiteAffine(x1, y1, x2, y2):
     return a, b
 
 def scene_change(sceneOld, sceneNew):
-    '''
+    """
     End of sceneOld, load sceneNew.
     Scene must be str: if scene = scene python object, name is scene.name
-    '''
+    """
     scenes = gl.getSceneList()
     print("Scenes list in scene_change() =", scenes)
     # Check name
@@ -77,7 +82,8 @@ def scene_change(sceneOld, sceneNew):
             print("  Scene {0} doesn't exist: Can't be set.".format(sceneNew))
 
 def print_str_args(*args):
-    """Imprime en terminal les variables en argument
+    """
+    Imprime en terminal les variables en argument
     Les variables doivent être sous forme de string,
     par exemple
     print_str_args("a")
