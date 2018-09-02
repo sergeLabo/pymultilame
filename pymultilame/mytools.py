@@ -55,13 +55,14 @@ class MyTools:
 
     def get_all_sub_directories(self, root):
         """
-        Retourne la liste de tous les sous-répertoires
+        Retourne la liste de tous les sous-répertoires, et du répertoire,
+        y compris les __pycache__
         """
-        sub_dir_list = []
-        for path, subdirs, files in os.walk(root):
-            sub_dir_list.append(subdirs)
-            
-        return sub_dir_list
+        # #sub_dir_list = []
+        # #for path, subdirs, files in os.walk(root):
+            # #sub_dir_list.append(subdirs)
+        
+        return [x[0] for x in os.walk(root)]
         
     def read_file(self, file_name):
         """
@@ -155,6 +156,10 @@ class MyTools:
 
         return output.decode('utf-8')
 
+def test_get_sub_dir():
+    mt = MyTools()
+    a = mt.get_all_sub_directories('.')
+    print(a)
 
 def test_run_command_system():
     
@@ -190,3 +195,4 @@ if __name__ == "__main__":
 
     test_get_all_files_list()
     test_run_command_system()
+    test_get_sub_dir()
