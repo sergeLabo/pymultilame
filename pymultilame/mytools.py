@@ -52,6 +52,16 @@ class MyTools:
                     file_list.append(str(pathlib.PurePath(path, name)))
                 
         return file_list
+
+    def get_all_sub_directories(self, root):
+        """
+        Retourne la liste de tous les sous-répertoires
+        """
+        sub_dir_list = []
+        for path, subdirs, files in os.walk(root):
+            sub_dir_list.append(subdirs)
+            
+        return sub_dir_list
         
     def read_file(self, file_name):
         """
