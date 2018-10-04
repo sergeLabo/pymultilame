@@ -48,15 +48,18 @@ except:
 def get_all_objects():
     """
     Retourne une liste de tous les objets des scènes actives
+    Trouve tous les objets de toutes las scènes actives,
+    retourne un dict {nom de l'objet: blender object}
     """
 
     activeScenes, scene_name = get_all_scenes()
 
-    all_obj = []
+    all_obj = {}
     for scn_name in scene_name:
         scn = get_scene_with_name(scn_name)
-        for ob in scn.objects:
-            all_obj.append(ob)
+        for blender_obj in scn.objects:
+            blender_objet_name = blender_obj.name
+            all_obj[blender_objet_name] = blender_obj
 
     return all_obj
 
