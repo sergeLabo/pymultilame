@@ -1,6 +1,10 @@
 #!/usr/bin/python3
 # -*- coding: UTF-8 -*-
 
+
+import subprocess
+
+
 # python3
 print('Imports en python3')
 
