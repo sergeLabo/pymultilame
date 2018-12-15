@@ -34,7 +34,7 @@ class VirtualGl:
     """
     bge = blender game engine
     Cette class remplace
-    from bge import logic
+        from bge import logic
     en dehors du Game Engine.
     """
     pass
@@ -47,9 +47,8 @@ except:
 
 def get_all_objects():
     """
-    Retourne une liste de tous les objets des scènes actives
-    Trouve tous les objets de toutes las scènes actives,
-    retourne un dict {nom de l'objet: blender object}
+    Trouve tous les objets des scènes actives
+    Retourne un dict {nom de l'objet: blender object}
     """
 
     activeScenes, scene_name = get_all_scenes()
@@ -64,9 +63,8 @@ def get_all_objects():
     return all_obj
 
 def get_all_scenes():
-    """
-    Récupération des scènes
-    """
+    """Récupération des scènes"""
+    
     # Liste des objets scènes
     activeScenes = gl.getSceneList()
 
@@ -78,9 +76,8 @@ def get_all_scenes():
     return activeScenes, scene_name
 
 def get_scene_with_name(scn):
-    """
-    Récupération de la scène avec le nom
-    """
+    """Récupération de la scène avec le nom"""
+    
     activeScenes, scene_name = get_all_scenes()
     if scn in scene_name:
         return activeScenes[scene_name.index(scn)]

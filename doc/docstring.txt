@@ -1,8 +1,95 @@
+======Python: pymultilame======
+
+<WRAP center round box centeralign 60%>
+**Des scripts pour les tâches de tous les jours**
+</WRAP>
+
+=====Les sources sur GitHub=====
+  * **[[https://github.com/sergeLabo/pymultilame|pymultilame sur GitHub]]**
+
+===== pymultilame =====
+
+==== Des scripts python pour les tâches répétitives. ====
+
+Ce module propose les outils les plus courrant que j'utilise, à utiliser en import ou en recopiant des bouts de code.
+
+Ce module est une amélioration de
+
+  * [[https://github.com/sergeLabo/mylabotools|mylabotools]]
+
+qui n'est plus maintenu.
+
+=== Rubriques proposées ===
+
+  * Blender: Des scripts spécifiques pour le Blender Game Engine 2.7x et qui ne peuvent tourner que dans Blender
+  * Twisted: des exemples de twisted en python3
+  * Network: des sockets simples en python3
+  * Tools: des outils utilisés fréquement
+
+==== Installation ====
+
+=== Installation de Twisted pour python 3.x ===
+
+  * [[installation_de_twisted|Python: Installation de Twisted]]
+
+<code>
+sudo pip3 install twisted
+</code>
+
+=== Installation de pymultilame ===
+
+  * [[creer_son_propre_package_python|Python: Créer son propre package python]]
+
+<code>
+sudo pip3 install -e git+https://github.com/sergeLabo/pymultilame.git#egg=pymultilame
+</code>
+
+Mise à jour:
+
+<code>
+sudo pip3 install --upgrade git+https://github.com/sergeLabo/pymultilame.git#egg=pymultilame
+</code>
+
+==== Utilisation ====
+
+<code python>
+from pymultilame import HttpDownload
+from pymultilame import MyTools
+from pymultilame import TcpClient2
+from pymultilame import TcpClient3
+from pymultilame import MyConfig2
+from pymultilame import MyConfig
+from pymultilame import get_my_ip
+from pymultilame import Multicast
+from pymultilame import UdpClient
+from pymultilame import PileFIFO
+from pymultilame import Multicast
+
+from pymultilame import Tempo
+from pymultilame import EasyAudio
+from pymultilame import TextureChange
+
+from pymultilame import scene_change, droiteAffine, scene_change, print_str_args
+from pymultilame import get_all_objects, get_all_scenes, get_scene_with_name
+
+</code>
+
+==== Licence ====
+
+Touls les scripts sont sous
+
+GNU GENERAL PUBLIC LICENSE Version 3
+
+voir le fichier LICENSE
+
+=====Documentation génèrée avec pydoc3.5=====
+Le script qui génère cette doc est dans le module pymultilame.
 ====blendergetobject====
 <code txt>
 FUNCTIONS
     get_all_objects()
-        Retourne une liste de tous les objets des scènes actives
+        Trouve tous les objets des scènes actives
+        Retourne un dict {nom de l'objet: blender object}
     
     get_all_scenes()
         Récupération des scènes
@@ -117,6 +204,7 @@ CLASSES
     class TempoFactory(builtins.object)
      |  Les tempos sont en fait des compteurs qui sont mis à jour à chaque
      |  frames de Blender avec update.
+     |  Pour une tempo de n, compte bien de 0 à n-1
      |  
      |  Methods defined here:
      |  
@@ -359,6 +447,41 @@ CLASSES
 
 </code>
 
+====myconfig2====
+<code txt>
+DESCRIPTION
+    Le fichier ini doit être défini avec son chemin absolu
+    
+    Pour un projet python:
+        import os
+        dossier = os.path.dirname(os.path.abspath(__file__))
+        ou
+        os.getcwd()
+    
+    Pour un projet Blender, le chemin complet est trouvé avec:
+        bge.logic.expandPath()
+
+CLASSES
+     |  Uniquement python 2
+     |  Charge la configuration depuis le fichier *.ini,
+     |  sauve les changement de configuration,
+     |  enregistre les changements par section, clé.
+     |  
+     |  Methods defined here:
+     |  
+     |  __init__(self, ini_file)
+     |      Charge la config depuis un fichier *.ini
+     |      Le cemin doit être donné avec son chemin absolu.
+     |  
+     |  load_config(self)
+     |      Lit le fichier *.ini, et copie la config dans un dictionnaire.
+     |  
+     |  save_config(self, section, key, value)
+     |      Sauvegarde dans le fichioer *.ini  avec section, key, value.
+     |      Uniquement int, float, str
+
+</code>
+
 ====mytools====
 <code txt>
 DESCRIPTION
@@ -387,6 +510,10 @@ CLASSES
      |      exemple:
      |          "network/http_download.py"
      |  
+     |  get_all_sub_directories(self, root)
+     |      Retourne la liste de tous les sous-répertoires, et du répertoire,
+     |      y compris les __pycache__
+     |  
      |  get_json_file(self, fichier)
      |      Retourne le json décodé des datas lues
      |      dans le fichier avec son chemin/nom.
@@ -400,20 +527,59 @@ CLASSES
      |      Retourne None si fichier inexistant ou impossible à lire .
      |  
      |  run_command_system(self, command)
-     |      Excécute la command shell et reourne la sortie terminal.
-     |      command = ['your_command', 'arg1', 'arg2', ...]
-     |      Ne marche pas:
-     |          resp = subprocess.call(command.split())
+     |      Excécute la command shell.
+     |      command = liste
      |  
-     |  write_data_in_file(self, data, fichier)
-     |      Ecrit des data de type string dans le fichier, écrase l'existant.
+     |  write_data_in_file(self, data, fichier, mode)
+     |      Ecrit data dans le fichier.
+     |      Mode 'w' écrit un string dans le fichier
+     |      Mode 'wb' écrit des bytes dans le fichier
+     |      w écrase
+     |      a ajoute
 
 </code>
 
-====tcpclient====
+====tcpclient2====
 <code txt>
 CLASSES
-    class TcpClient(builtins.object)
+     |  Uniquement python 2
+     |  Envoi et réception sur le même socket en TCP.
+     |  
+     |  Methods defined here:
+     |  
+     |  __init__(self, ip, port)
+     |  
+     |  clear_buffer(self, buff)
+     |      N'a pas marché dans rezobox.
+     |  
+     |  close_sock(self)
+     |      Fermeture de la socket.
+     |  
+     |  connect_sock(self)
+     |  
+     |  create_socket(self)
+     |      Création du socket sans try, et avec connexion.
+     |      Reconnexion toutes les secondes
+     |      La différence entre python 2 et 3 est là
+     |  
+     |  listen(self, buff)
+     |      Retourne les data brutes reçues, et vide le buffer TCP
+     |  
+     |  re_connect_sock(self)
+     |  
+     |  reconnect(self)
+     |      Reconnexion.
+     |  
+     |  send(self, msg)
+     |      Envoi d'un message, avec send, msg doit être encodé avant.
+
+</code>
+
+====tcpclient3====
+<code txt>
+CLASSES
+    class TcpClient3(builtins.object)
+     |  Uniquement python 3
      |  Envoi et réception sur le même socket en TCP.
      |  
      |  Methods defined here:
@@ -421,17 +587,20 @@ CLASSES
      |  __init__(self, ip, port)
      |      Initialize self.  See help(type(self)) for accurate signature.
      |  
+     |  clear_buffer(self, buff)
+     |  
      |  close_sock(self)
      |      Fermeture de la socket.
      |  
      |  connect_sock(self)
-     |      Connexion de la socket, si ok retoune 1 sinon None
      |  
      |  create_socket(self)
      |      Création du socket sans try, et avec connexion.
      |  
-     |  listen(self)
-     |      Retourne les data brutes reçues.
+     |  listen(self, buff)
+     |      Retourne les data brutes reçues, et vide le buffer TCP
+     |  
+     |  re_connect_sock(self)
      |  
      |  reconnect(self)
      |      Reconnexion.
@@ -477,3 +646,4 @@ CLASSES
 </code>
 
 
+{{tag>python sb realisations_logicielles}}

@@ -4,7 +4,7 @@
 """
     Ce module propose les outils les plus courrant que j'utilise,
     et aussi pour retrouver des syntaxes peu utilisée que je n'ai pas en mémoire,
-    mais qui nécessiterait des recherches.
+    et qui nécessiteraient des recherches.
     Les imports réalisé ici facilite les imports dans les scripts:
     Au lieu de:
         from pymultilame.httpdownload import HttpDownload
@@ -16,8 +16,10 @@ name = "pymultilame"
 
 from pymultilame.httpdownload import HttpDownload
 from pymultilame.mytools import MyTools
-from pymultilame.tcpclient import TcpClient
+from pymultilame.tcpclient2 import TcpClient2
+from pymultilame.tcpclient3 import TcpClient3
 from pymultilame.myconfig import MyConfig
+from pymultilame.myconfig2 import MyConfig2
 from pymultilame.getmyip import get_my_ip
 from pymultilame.multicast import Multicast
 from pymultilame.udpclient import UdpClient

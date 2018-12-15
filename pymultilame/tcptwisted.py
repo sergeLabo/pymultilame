@@ -143,7 +143,7 @@ def client_thread(host, port):
 def main(opt):
     """
     Le serveur et client ne peuvent pas tourner dans le même script,
-    il n"y a qu"un seul reactor !
+    il n'y a qu'un seul reactor !
     """
 
     host = "192.168.1.17"

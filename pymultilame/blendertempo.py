@@ -22,7 +22,7 @@
 
 
 """
-Class utilisable pour des tempo et compteur dans Blender.
+Class utilisable pour des tempo et compteur dans Blender
 """
 
 class VirtualGl:
@@ -47,6 +47,7 @@ class TempoFactory():
     """
     Les tempos sont en fait des compteurs qui sont mis à jour à chaque
     frames de Blender avec update.
+    Pour une tempo de n, compte bien de 0 à n-1
     """
 
     def __init__(self, periode=60):
@@ -60,35 +61,30 @@ class TempoFactory():
         self.periode = periode
         self.verrou = False
         self.pas = 1
-        self.tempo = 0
+        # Pour qu'au 1er cycle on commence bien à 0
+        self.tempo = -1
 
     def lock(self):
-        """
-        Verrou, je bloque
-        """
+        """Verrou, je bloque"""
+        
         self.verrou = True
 
     def unlock(self):
-        """
-        Pas de verrou, je peux incrémenter
-        """
+        """Pas de verrou, je peux incrémenter"""
+        
         self.verrou = False
 
     def reset(self):
-        """
-        Remise à zéro de la tempo
-        """
+        """Remise à zéro de la tempo"""
         self.tempo = 0
 
     def update(self):
-        """
-        J'incrémente si pas de verrou. Si verrou, je ne fais rien
-        """
+        """J'incrémente si pas de verrou. Si verrou, je ne fais rien"""
 
         if not self.verrou:
             self.tempo += self.pas
             if self.periode != -1:
-                if self.tempo >= self.periode +1:
+                if self.tempo >= self.periode:
                     self.tempo = 0
         return self.tempo
 
@@ -125,13 +121,11 @@ def test():
     gl.init_tempo = False
 
     while True:
-        # Simulation de la pulsation de Blender à 60 fps
-        sleep(0.5)
+        sleep(0.1)
         if not gl.init_tempo:
             # Création des objects
             tempo_liste = [("intro", 60), ("print", 12), ("sound", 6)]
             tempoDict = Tempo(tempo_liste)
-            print(tempoDict)
             gl.init_tempo = True
 
         if gl.init_tempo:

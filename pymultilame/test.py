@@ -4,7 +4,9 @@
 
 from pymultilame import HttpDownload
 from pymultilame import MyTools
-from pymultilame import TcpClient
+from pymultilame import TcpClient2
+from pymultilame import TcpClient3
+from pymultilame import MyConfig2
 from pymultilame import MyConfig
 from pymultilame import get_my_ip
 from pymultilame import Multicast

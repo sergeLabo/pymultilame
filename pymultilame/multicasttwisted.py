@@ -50,9 +50,8 @@ class MulticastClient(DatagramProtocol):
 class MulticastServer(DatagramProtocol):
 
     def startProtocol(self):
-        """
-        Called after protocol has started listening.
-        """
+        """Called after protocol has started listening."""
+        
         # Set the TTL>1 so multicast will cross router hops:
         self.transport.setTTL(5)
         # Join a specific multicast group:

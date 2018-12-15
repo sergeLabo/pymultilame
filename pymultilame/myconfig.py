@@ -61,9 +61,7 @@ class MyConfig():
         self.load_config()
 
     def load_config(self):
-        """
-        Lit le fichier *.ini, et copie la config dans un dictionnaire.
-        """
+        """Lit le fichier *.ini, et copie la config dans un dictionnaire."""
 
         parser = SafeConfigParser()
         parser.read(self.ini)

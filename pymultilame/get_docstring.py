@@ -50,12 +50,10 @@ class GetDoc:
     """
 
     def __init__(self, directory):
-        """
-        directory = dossier racine de recherche des scripts
-        """
+        """directory = dossier racine de recherche des scripts"""
         self.directory = directory
         self.mt = MyTools()
-        self.DOC = ""
+        self.DOC = intro
 
     def get_doc_batch(self):
         """
@@ -77,45 +75,53 @@ class GetDoc:
                         './httpdownload.py',
                         './multicast.py',
                         './myconfig.py',
+                        './myconfig2.py',
                         './mytools.py',
-                        './tcpclient.py',
+                        './tcpclient2.py',
+                        './tcpclient3.py',
                         './udpclient.py']
 
         for script in all_scripts:
+            print('Création de la doc pour:', script)
             self.get_doc(script)
 
         # Enregister en écrasant dans "docstring.txt"
         self.DOC += '\n'
-        print(self.DOC)
+        self.DOC += '{{tag>python sb realisations_logicielles}}'
         self.save_doc(self.DOC)
         
     def get_doc(self, script):
         """
         Crée la doc du script avec pydoc3.5
-        Installation de pydoc3.5
-        sudo pip3 install pydoc
-        et l'ajoute à self.DOC
+        sauf pour les scripts python2.7, utilise pydoc
+        et l'ajoute à self.DOC        
         """
-        
-        command = ['pydoc3.5', script]
-        resp = self.mt.run_command_system(command)
-        doc = self.improve_resp(resp)
+        if '2' in script:
+            command = ['pydoc', script]
+            resp = self.mt.run_command_system(command)
+            doc = self.improve_resp(resp)
+        else:
+            command = ['pydoc3.5', script]
+            resp = self.mt.run_command_system(command)
+            doc = self.improve_resp(resp)
         
         # Ajout
         self.DOC += '====' + script[2:-3] + '====\n'
         self.DOC += '<code txt>\n' + doc + '</code>\n\n'
 
     def save_doc(self, doc):
-        """
-        Save in docstring.txt
-        """
-        fichier = "docstring.txt"
-        self.mt.write_data_in_file(doc, fichier)
+        """Save in docstring.txt"""
 
+        rep = self.mt.get_absolute_path('./')
+        # Coupe de pymultilame/
+        print('Répertoire de base', rep[:-12])
+        fichier = rep[:-12] + "/doc/docstring.txt"
+        self.mt.write_data_in_file(doc, fichier, 'w')
+        print('Documentation enregistrée dans:', fichier)
+        
     def improve_resp(self, resp):
-        """
-        Amélioration par suppression de l'inutile!
-        """
+        """Amélioration par suppression de l'inutile!"""
+        
         # Suppression des 5 premières lignes
         lines = resp.splitlines()  # list
         lines = lines[5:]
@@ -163,6 +169,94 @@ class GetDoc:
         
         return doc
 
+
+intro = """======Python: pymultilame======
+
+<WRAP center round box centeralign 60%>
+**Des scripts pour les tâches de tous les jours**
+</WRAP>
+
+=====Les sources sur GitHub=====
+  * **[[https://github.com/sergeLabo/pymultilame|pymultilame sur GitHub]]**
+
+===== pymultilame =====
+
+==== Des scripts python pour les tâches répétitives. ====
+
+Ce module propose les outils les plus courrant que j'utilise, à utiliser en import ou en recopiant des bouts de code.
+
+Ce module est une amélioration de
+
+  * [[https://github.com/sergeLabo/mylabotools|mylabotools]]
+
+qui n'est plus maintenu.
+
+=== Rubriques proposées ===
+
+  * Blender: Des scripts spécifiques pour le Blender Game Engine 2.7x et qui ne peuvent tourner que dans Blender
+  * Twisted: des exemples de twisted en python3
+  * Network: des sockets simples en python3
+  * Tools: des outils utilisés fréquement
+
+==== Installation ====
+
+=== Installation de Twisted pour python 3.x ===
+
+  * [[installation_de_twisted|Python: Installation de Twisted]]
+
+<code>
+sudo pip3 install twisted
+</code>
+
+=== Installation de pymultilame ===
+
+  * [[creer_son_propre_package_python|Python: Créer son propre package python]]
+
+<code>
+sudo pip3 install -e git+https://github.com/sergeLabo/pymultilame.git#egg=pymultilame
+</code>
+
+Mise à jour:
+
+<code>
+sudo pip3 install --upgrade git+https://github.com/sergeLabo/pymultilame.git#egg=pymultilame
+</code>
+
+==== Utilisation ====
+
+<code python>
+from pymultilame import HttpDownload
+from pymultilame import MyTools
+from pymultilame import TcpClient2
+from pymultilame import TcpClient3
+from pymultilame import MyConfig2
+from pymultilame import MyConfig
+from pymultilame import get_my_ip
+from pymultilame import Multicast
+from pymultilame import UdpClient
+from pymultilame import PileFIFO
+from pymultilame import Multicast
+
+from pymultilame import Tempo
+from pymultilame import EasyAudio
+from pymultilame import TextureChange
+
+from pymultilame import scene_change, droiteAffine, scene_change, print_str_args
+from pymultilame import get_all_objects, get_all_scenes, get_scene_with_name
+
+</code>
+
+==== Licence ====
+
+Touls les scripts sont sous
+
+GNU GENERAL PUBLIC LICENSE Version 3
+
+voir le fichier LICENSE
+
+=====Documentation génèrée avec pydoc3.5=====
+Le script qui génère cette doc est dans le module pymultilame.
+"""
 
 data_dict_doc = """     |  
      |  ----------------------------------------------------------------------

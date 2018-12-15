@@ -30,18 +30,14 @@ class PileFIFO():
     sur les dernières valeurs d'une variable.
     """
     def __init__(self, size):
-        """
-        size définit la hauteur de la pile.
-        """
+        """size définit la hauteur de la pile."""
 
         self.queue = []
         self.size = size
         self.average = 0
 
     def append(self, new):
-        """
-        Ajoute pour avoir une pile constante de size valeurs.
-        """
+        """Ajoute pour avoir une pile constante de size valeurs."""
 
         # Ajout dans la liste à la fin
         self.queue.append(new)
@@ -56,9 +52,7 @@ class PileFIFO():
 
 
     def average_calcul(self):
-        """
-        Maj de la valeur moyenne de la pile.
-        """
+        """Maj de la valeur moyenne de la pile."""
         somme = 0
         for i in range(len(self.queue)):
             somme += self.queue[i]

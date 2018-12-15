@@ -18,6 +18,13 @@ qui n'est plus maintenu.
 * Network: des sockets simples en python3
 * Tools: des outils utilisés fréquement
 
+### Modifications majeurs
+
+#### Version 1.1
+
+* Les tempo pour Blender comptent bien de 0 à n-1, soit n fois
+* TcpClient différent pour python 2 et 3
+
 ### Installation
 
 #### Installation de Twisted pour python 3.x
@@ -48,7 +55,8 @@ sudo pip3 install --upgrade git+https://github.com/sergeLabo/pymultilame.git#egg
 ~~~python
 from pymultilame import HttpDownload
 from pymultilame import MyTools
-from pymultilame import TcpClient
+from pymultilame import TcpClient2
+from pymultilame import TcpClient3
 from pymultilame import MyConfig
 from pymultilame import get_my_ip
 from pymultilame import Multicast

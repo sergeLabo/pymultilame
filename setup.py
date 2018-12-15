@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='pymultilame',
-    version='1.0.3',
+    version='1.2',
     plateformes = 'LINUX',
     packages=find_packages(),
     packages_dir = {'' : 'pymultilame'},

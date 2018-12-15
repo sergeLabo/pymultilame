@@ -58,9 +58,6 @@ class MyTools:
         Retourne la liste de tous les sous-répertoires, et du répertoire,
         y compris les __pycache__
         """
-        # #sub_dir_list = []
-        # #for path, subdirs, files in os.walk(root):
-            # #sub_dir_list.append(subdirs)
         
         return [x[0] for x in os.walk(root)]
         
@@ -80,12 +77,15 @@ class MyTools:
 
         return data
 
-    def write_data_in_file(self, data, fichier):
+    def write_data_in_file(self, data, fichier, mode):
         """
-        Ecrit des data de type string dans le fichier, écrase l'existant.
+        Ecrit data dans le fichier.
+        Mode 'w' écrit un string dans le fichier
+        Mode 'wb' écrit des bytes dans le fichier
+        w écrase
+        a ajoute
         """
-
-        with open(fichier, 'w') as fd:
+        with open(fichier, mode) as fd:
             fd.write(data)
         fd.close()
 
@@ -95,7 +95,8 @@ class MyTools:
         return dumps(data)
 
     def get_json_file(self, fichier):
-        """Retourne le json décodé des datas lues
+        """
+        Retourne le json décodé des datas lues
         dans le fichier avec son chemin/nom.
         """
         with open(fichier) as f:
@@ -132,7 +133,7 @@ class MyTools:
             pathlib.Path(directory).mkdir(mode=0o777, parents=False)
             print("Création du répertoire: {}".format(directory))
         except FileExistsError as e:
-            pass
+            print("Le répertoire {} existe".format(directory))
 
     def get_absolute_path(self, a_file_or_a_directory):
         """
@@ -144,21 +145,24 @@ class MyTools:
 
     def run_command_system(self, command):
         """
-        Excécute la command shell et reourne la sortie terminal.
-        command = ['your_command', 'arg1', 'arg2', ...]
-        Ne marche pas:
-            resp = subprocess.call(command.split())
+        Excécute la command shell.
+        command = liste
         """
-        p = subprocess.Popen(command,
-                             stdout=subprocess.PIPE,
-                             stderr=subprocess.PIPE)
-        output, errors = p.communicate()
+        #resp = subprocess.call(command.split())
+        #resp = subprocess.getoutput(command.split()
 
+        p = subprocess.Popen(command,
+                            stdout=subprocess.PIPE,
+                            stderr=subprocess.PIPE)
+        output, errors = p.communicate()
+        
         return output.decode('utf-8')
+
 
 def test_get_sub_dir():
     mt = MyTools()
     a = mt.get_all_sub_directories('.')
+    print('\nGet all sub directories')
     print(a)
 
 def test_run_command_system():
@@ -166,21 +170,19 @@ def test_run_command_system():
     mt = MyTools()
     
     # ls du dossiercourant
-    print(mt.run_command_system(['ls']))
+    print(mt.run_command_system('ls'))
     
     # ls du dossiercourant
-    print(mt.run_command_system(['pydoc3.5', 'pymultilame.HttpDownload']))
-    
+    print('\nls de /media/data/3D/projets/pymultilame/')
+    print(mt.run_command_system('ls /media/data/3D/projets/pymultilame/'))
     
 def test_get_all_files_list():
-    """
-    Recherche des py et txt dans pymultilame/pymultilame/
-    """
+    """Recherche des py et txt dans pymultilame/pymultilame/"""
     
     mt = MyTools()
     d = "/media/data/3D/projets/pymultilame/pymultilame/"
     
-    print("list des py dans", d)
+    print("\nListe des py dans", d)
     l = mt.get_all_files_list(d, "py")
     for f in l:
         print(f)
