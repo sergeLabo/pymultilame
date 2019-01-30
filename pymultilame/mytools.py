@@ -139,6 +139,9 @@ class MyTools:
         """
         Retourne le chemin absolu d'un répertoire ou d'un fichier
         n'importe où.
+        
+        Valable depuis le script courrant ou en import depuis un autre script
+        get_absolute_path(__file__)
         """
 
         return os.path.abspath(a_file_or_a_directory)

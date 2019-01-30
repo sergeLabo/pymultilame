@@ -64,7 +64,7 @@ class MyConfig():
         """Lit le fichier *.ini, et copie la config dans un dictionnaire."""
 
         parser = SafeConfigParser()
-        parser.read(self.ini)
+        parser.read(self.ini, encoding="utf-8")
 
         # Lecture et copie dans le dictionnaire
         for section_name in parser.sections():
