@@ -45,12 +45,12 @@ class MyTools:
             "network/http_download.py"
         """
         file_list = []
-        
+
         for path, subdirs, files in os.walk(root):
             for name in files:
                 if name.endswith(file_end):
                     file_list.append(str(pathlib.PurePath(path, name)))
-                
+
         return file_list
 
     def get_all_sub_directories(self, root):
@@ -58,9 +58,9 @@ class MyTools:
         Retourne la liste de tous les sous-répertoires, et du répertoire,
         y compris les __pycache__
         """
-        
+
         return [x[0] for x in os.walk(root)]
-        
+
     def read_file(self, file_name):
         """
         Retourne les datas lues dans le fichier avec son chemin/nom
@@ -133,13 +133,14 @@ class MyTools:
             pathlib.Path(directory).mkdir(mode=0o777, parents=False)
             print("Création du répertoire: {}".format(directory))
         except FileExistsError as e:
-            print("Le répertoire {} existe".format(directory))
+            #print("Le répertoire {} existe".format(directory))
+            pass
 
     def get_absolute_path(self, a_file_or_a_directory):
         """
         Retourne le chemin absolu d'un répertoire ou d'un fichier
         n'importe où.
-        
+
         Valable depuis le script courrant ou en import depuis un autre script
         get_absolute_path(__file__)
         """
@@ -158,7 +159,7 @@ class MyTools:
                             stdout=subprocess.PIPE,
                             stderr=subprocess.PIPE)
         output, errors = p.communicate()
-        
+
         return output.decode('utf-8')
 
 
@@ -169,22 +170,22 @@ def test_get_sub_dir():
     print(a)
 
 def test_run_command_system():
-    
+
     mt = MyTools()
-    
+
     # ls du dossiercourant
     print(mt.run_command_system('ls'))
-    
+
     # ls du dossiercourant
     print('\nls de /media/data/3D/projets/pymultilame/')
     print(mt.run_command_system('ls /media/data/3D/projets/pymultilame/'))
-    
+
 def test_get_all_files_list():
     """Recherche des py et txt dans pymultilame/pymultilame/"""
-    
+
     mt = MyTools()
     d = "/media/data/3D/projets/pymultilame/pymultilame/"
-    
+
     print("\nListe des py dans", d)
     l = mt.get_all_files_list(d, "py")
     for f in l:

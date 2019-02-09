@@ -53,7 +53,7 @@ class MyConfig():
     def __init__(self, ini_file):
         """
         Charge la config depuis un fichier *.ini
-        Le cemin doit être donné avec son chemin absolu.
+        Le chemin doit être donné avec son chemin absolu.
         """
 
         self.conf = {}
