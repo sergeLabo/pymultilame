@@ -133,8 +133,11 @@ class MyTools:
             pathlib.Path(directory).mkdir(mode=0o777, parents=False)
             print("Création du répertoire: {}".format(directory))
         except FileExistsError as e:
-            #print("Le répertoire {} existe".format(directory))
-            pass
+            print(e, "Le répertoire {} existe.".format(directory))
+        except PermissionError as e:
+            print(e, "Problème de droits avec le répertoire {}".format(directory))
+        except:
+            print("Erreur avec {}".format(directory))
 
     def get_absolute_path(self, a_file_or_a_directory):
         """

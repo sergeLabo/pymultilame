@@ -18,12 +18,20 @@ qui n'est plus maintenu.
 * Network: des sockets simples en python3
 * Tools: des outils utilisés fréquement
 
-### Modifications majeurs
+### Modifications majeurs Version 
 
-#### Version 1.1
+#### 1.1
 
 * Les tempo pour Blender comptent bien de 0 à n-1, soit n fois
 * TcpClient différent pour python 2 et 3
+
+#### 1.51
+
+* Gestion des erreurs dans create_directory()
+
+### TODO
+
+* Ajouter un module pour gérer les chemins et les dossiers d'un projet
 
 ### Installation
 
