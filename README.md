@@ -25,7 +25,7 @@ qui n'est plus maintenu.
 * Les tempo pour Blender comptent bien de 0 à n-1, soit n fois
 * TcpClient différent pour python 2 et 3
 
-#### 1.51
+#### 1.51 et 1.52
 
 * Gestion des erreurs dans create_directory()
 
