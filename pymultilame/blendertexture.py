@@ -28,11 +28,39 @@ Ce script ne peut tourner que dans blender.
 """
 
 
+class VirtualGl:
+    """
+    bge = blender game engine
+    Cette class remplace
+    from bge import logic
+    en dehors du Game Engine.
+    """
+    pass
+
+    
+class VirtualTexture:
+    """
+    bge = blender game engine
+    Cette class remplace
+    from bge import logic
+    en dehors du Game Engine.
+    """
+    pass
+
+    
+try:
+    from bge import logic as gl
+except:
+    gl = VirtualGl()
+try:
+    from bge import texture
+except:
+    texture = VirtualTexture()
+
+    
 __all__ = ['TextureChange']
 
 
-from bge import logic as gl
-from bge import texture
 
 
 class TextureChange():
