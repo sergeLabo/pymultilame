@@ -50,7 +50,6 @@ class PileFIFO():
         if len(self.queue) > self.size:
             self.queue.pop(0)
 
-
     def average_calcul(self):
         """Maj de la valeur moyenne de la pile."""
         somme = 0

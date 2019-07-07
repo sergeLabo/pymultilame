@@ -30,18 +30,11 @@ Ce script ne peut tourner que dans blender.
 
 __all__ = ['TextureChange']
 
-class VirtualTexture:
-    """
-    idem VirtualGl pour texture
-    """
-    pass
 
-try:
-    from bge import texture
-except:
-    texture = VirtualTexture()
+from bge import logic as gl
+from bge import texture
 
-    
+
 class TextureChange():
     """
     Classe générique utilisable dans d'autres projects,

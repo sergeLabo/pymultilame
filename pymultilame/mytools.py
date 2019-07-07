@@ -55,7 +55,8 @@ class MyTools:
 
     def get_all_sub_directories(self, root):
         """
-        Retourne la liste de tous les sous-répertoires, et du répertoire,
+        Retourne la liste de tous les sous-répertoires,
+        et du répertoire,
         y compris les __pycache__
         """
 
