@@ -29,9 +29,9 @@ qui n'est plus maintenu.
 
 * Gestion des erreurs dans create_directory()
 
-### TODO
+### 1.56
 
-* Ajouter un module pour gérer les chemins et les dossiers d'un projet
+* Ajouter d'un module pour gérer les chemins et les dossiers d'un projet
 
 ### Installation
 

@@ -16,24 +16,31 @@ name = "pymultilame"
 
 from pymultilame.httpdownload import HttpDownload
 from pymultilame.mytools import MyTools
-#from pymultilame.tcpclient2 import TcpClient2
 from pymultilame.tcpclient3 import TcpClient3
 from pymultilame.myconfig import MyConfig
-#from pymultilame.myconfig2 import MyConfig2
 from pymultilame.getmyip import get_my_ip
 from pymultilame.multicast import Multicast
 from pymultilame.udpclient import UdpClient
 from pymultilame.fifolist import PileFIFO
 from pymultilame.multicast import Multicast
+from pymultilame.pathtools import PathTools
+from pymultilame.pathtools import ShUtil
+from pymultilame.pathtools import Developper
 
 from pymultilame.blendertempo import Tempo
 from pymultilame.blendersound import EasyAudio
 from pymultilame.blendertexture import TextureChange
 
-from pymultilame.blendergetobject import get_all_objects, get_all_scenes, get_scene_with_name
+from pymultilame.blendergetobject import get_all_objects,
+                                         get_all_scenes,
+                                         get_scene_with_name
 
-from pymultilame.blendertools import droiteAffine, scene_change, print_str_args
+from pymultilame.blendertools import droiteAffine,
+                                     scene_change,
+                                     print_str_args
 
-from pymultilame.blenderviewport import enable_full_viewport,enable_half_viewport
-from pymultilame.blenderviewport import enable_stereo_viewport, enable_quad_viewport
-from pymultilame.blenderviewport import disable_viewport
+from pymultilame.blenderviewport import enable_full_viewport,
+                                        enable_half_viewport,
+                                        enable_stereo_viewport,
+                                        enable_quad_viewport,
+                                        disable_viewport
