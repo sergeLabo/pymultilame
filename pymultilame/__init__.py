@@ -31,16 +31,16 @@ from pymultilame.blendertempo import Tempo
 from pymultilame.blendersound import EasyAudio
 from pymultilame.blendertexture import TextureChange
 
-from pymultilame.blendergetobject import get_all_objects,
-                                         get_all_scenes,
-                                         get_scene_with_name
+from pymultilame.blendergetobject import get_all_objects
+from pymultilame.blendergetobject import get_all_scenes
+from pymultilame.blendergetobject import get_scene_with_name
 
-from pymultilame.blendertools import droiteAffine,
-                                     scene_change,
-                                     print_str_args
+from pymultilame.blendertools import droiteAffine
+from pymultilame.blendertools import scene_change
+from pymultilame.blendertools import print_str_args
 
-from pymultilame.blenderviewport import enable_full_viewport,
-                                        enable_half_viewport,
-                                        enable_stereo_viewport,
-                                        enable_quad_viewport,
-                                        disable_viewport
+from pymultilame.blenderviewport import enable_full_viewport
+from pymultilame.blenderviewport import enable_half_viewport
+from pymultilame.blenderviewport import enable_stereo_viewport
+from pymultilame.blenderviewport import enable_quad_viewport
+from pymultilame.blenderviewport import disable_viewport
