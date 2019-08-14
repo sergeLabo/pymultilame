@@ -140,6 +140,7 @@ class MyTools:
             print("Problème de droits avec le répertoire {}".format(directory))
         except:
             print("Erreur avec {}".format(directory))
+            os._exit(0)
 
     def get_absolute_path(self, a_file_or_a_directory):
         """

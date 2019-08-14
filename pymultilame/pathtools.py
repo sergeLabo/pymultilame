@@ -46,6 +46,7 @@ class PathTools:
         """
 
         """
+        pass
 
     def create_directory(self, directory):
         """

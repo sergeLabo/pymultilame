@@ -20,18 +20,18 @@ qui n'est plus maintenu.
 
 ### Modifications majeurs Version 
 
-#### 1.1
+### 1.57
 
-* Les tempo pour Blender comptent bien de 0 à n-1, soit n fois
-* TcpClient différent pour python 2 et 3
+* Avec path_tools
 
 #### 1.51 et 1.52
 
 * Gestion des erreurs dans create_directory()
 
-### 1.56
+#### 1.1
 
-* Ajouter d'un module pour gérer les chemins et les dossiers d'un projet
+* Les tempo pour Blender comptent bien de 0 à n-1, soit n fois
+* TcpClient différent pour python 2 et 3
 
 ### Installation
 
