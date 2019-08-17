@@ -28,7 +28,7 @@ regroupées dans une class MyTools
 
 import os
 import subprocess
-import pathlib
+from pathlib import Path
 from json import dumps, loads
 
 __all__ = ['MyTools']
@@ -130,7 +130,8 @@ class MyTools:
         """
 
         try:
-            pathlib.Path(directory).mkdir(mode=0o777, parents=False)
+            # mode=0o777 est par défaut
+            Path(directory).mkdir(mode=0o777, parents=False)
             print("Création du répertoire: {}".format(directory))
         except FileExistsError as e:
             pass
