@@ -36,7 +36,7 @@ __all__ = ['MyTools']
 
 class MyTools:
 
-    def get_all_files_list(self, root, extentions):
+    def get_all_files_list(self, directory, extentions):
         """
         Lit le dossier et tous les sous-dosssiers.
         Retourne la liste de tous les fichiers avec les extentions de
