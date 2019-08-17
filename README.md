@@ -19,17 +19,16 @@ qui n'est plus maintenu.
 * Tools: des outils utilisés fréquement
 
 ### Modifications majeurs Version 
+#### 1.58
+Extensions multiples
 
-### 1.57
-
+#### 1.57
 * Avec path_tools
 
 #### 1.51 et 1.52
-
 * Gestion des erreurs dans create_directory()
 
 #### 1.1
-
 * Les tempo pour Blender comptent bien de 0 à n-1, soit n fois
 * TcpClient différent pour python 2 et 3
 

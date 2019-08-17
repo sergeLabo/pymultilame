@@ -129,7 +129,7 @@ class PathTools:
         for d in currentDirectory.iterdir():
             print(d)
         """
-
+        # TODO finir
         return Path('.')
 
     def construct_path(self):
@@ -139,11 +139,12 @@ class PathTools:
         
         return Path.home() / 'python' / 'scripts' / 'test.py'
 
-    def opening_file(self, d, fichier):
-        
-        with d.open() as f:
-            print(f.readline())
-
+    def opening_file(self, fichier):
+        p = Path('./')
+        q = p / fichier
+        with q.open() as f:
+            lines = f.readlines()
+        return lines
 
 
 class ShUtil:
@@ -198,12 +199,13 @@ if __name__ == "__main__":
     print("sub_directory", a)
 
     e = Path('/media')
-    f = e / 'data' / '3D' / 'projets'
-    print("file_list =", pt.get_file_list(e, [".py"]))
+    f = e / 'data' / '3D' / 'projets' / 'darknet-letters'
+    print("file_list =", pt.get_file_list(f, [".py"]))
         
-    print(Path.home())
+    print("Chemin du home", Path.home())
 
     c = pt.construct_path()
-    print(c)
+    print("Exemple de construction d'un chemin", c)
 
-    pt.opening_file(e, 'pathtools.py')
+    lines = pt.opening_file('mytools.py')
+    print(lines)

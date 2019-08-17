@@ -36,23 +36,22 @@ __all__ = ['MyTools']
 
 class MyTools:
 
-    def get_all_files_list(self, root, file_end):
+    def get_all_files_list(self, root, extentions):
         """
         Lit le dossier et tous les sous-dosssiers.
-        Retourne une liste de tous les fichiers avec l'extension file_end
-        avec le chemin absolu
-        exemple:
-            "network/http_download.py"
+        Retourne la liste de tous les fichiers avec les extentions de
+        la liste extentions.
         """
+        
         file_list = []
-
-        for path, subdirs, files in os.walk(root):
+        for path, subdirs, files in os.walk(directory):
             for name in files:
-                if name.endswith(file_end):
-                    file_list.append(str(pathlib.PurePath(path, name)))
+                for extention in extentions:
+                    if name.endswith(extention):
+                        file_list.append(str(Path(path, name)))
 
         return file_list
-
+    
     def get_all_sub_directories(self, root):
         """
         Retourne la liste de tous les sous-répertoires,
