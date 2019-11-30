@@ -134,8 +134,7 @@ class MyTools:
             Path(directory).mkdir(mode=0o777, parents=False)
             print("Création du répertoire: {}".format(directory))
         except FileExistsError as e:
-            pass
-            #print("Le répertoire {} existe.".format(directory))
+            print("Le répertoire {} existe.".format(directory))
         except PermissionError as e:
             print("Problème de droits avec le répertoire {}".format(directory))
         except:

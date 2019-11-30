@@ -33,20 +33,11 @@ The pathlib module describes itself as a way to:
 
 
 import os
-from pathlib import Path
-from shutil import copyfile
-
-
-__all__ = ['PathTools', 'ShUtil', 'Developper']
+from pathlib import Path, PosixPath
+import shutil
 
 
 class PathTools:
-
-    def __init__(self):
-        """
-
-        """
-        pass
 
     def create_directory(self, directory):
         """
@@ -58,11 +49,11 @@ class PathTools:
             pathlib.Path(directory).mkdir(mode=0o777, parents=False)
             print("Création du répertoire: {}".format(directory))
         except FileExistsError as e:
-            print("Le répertoire {} existe.".format(directory))
+            print("Ce répertoire existe: {}".format(directory))
         except PermissionError as e:
-            print("Problème de droits avec le répertoire {}".format(directory))
+            print("Problème de droits avec le répertoire: {}".format(directory))
         except:
-            print("Erreur avec {}".format(directory))
+            print("Erreur avec le répertoire: {}".format(directory))
 
     def get_current_directory(self):
         """
@@ -71,10 +62,10 @@ class PathTools:
             - retourne le dossier du blend avec le Standalone Player
             - retourne le home dans le Embedded Player
         """
-        
+
         root =  str(Path.cwd().resolve())
         print("Chemin du dossier courant de ce script:", root)
-        
+
         return root
 
     def get_file_list(self, directory, extentions):
@@ -84,7 +75,7 @@ class PathTools:
 
         Si directory est défini avec chemin relatif (idem avec absolu),
             les fichiers sont avec chemin relatif (idem avec absolu).
-        
+
         Attention: subdirs comprend le dossier racine !
         """
 
@@ -96,7 +87,7 @@ class PathTools:
                         file_list.append(str(Path(path, name)))
 
         return file_list
-        
+
     def get_project_sub_directory(self, mon_projet):
         """Le dossier projet est "toto", avec seulement License, lanceur, ...
         Tout le projet lui-même est dans un sous-dossier appelé ici
@@ -111,15 +102,14 @@ class PathTools:
         """
 
         p = Path(mon_projet)
-        
+
         return p
-        
+
     def create_path(self):
         """
         os.path.join(path, *paths)
         """
         pass
-        
 
     def get_current_directory_contents(self):
         """
@@ -136,7 +126,7 @@ class PathTools:
         """
         https://docs.python.org/3/library/pathlib.html#basic-use
         """
-        
+
         return Path.home() / 'python' / 'scripts' / 'test.py'
 
     def opening_file(self, fichier):
@@ -146,19 +136,48 @@ class PathTools:
             lines = f.readlines()
         return lines
 
+    def set_extension(self, fichier, extension):
+        """Ajoute une extention:
+        fichier est Path ou pas
+        extension = ".toto"
+        Retourne toujours un path
+        """
+
+        if not isinstance(fichier, PosixPath):
+            fichier = Path(fichier)
+
+        return fichier.with_suffix(extension)
+
+    def path_to_str(self, fichier):
+        """Convertit un objet Path en string.
+        Cette fonction sert juste à retrouver la syntaxe.
+        """
+
+        return str(fichier)
+
+    def change_directory(self, fichier):
+        """fichier est Path ou pas
+        """
+
+        if not isinstance(fichier, PosixPath):
+            fichier = Path(fichier)
+        f = fichier.absolute()
+        print(f.resolve())
+
 
 class ShUtil:
-    
+
     def copy_file(self, src, dst):
         """Copie le fichier src à dst
         src, dst sont les noms avec le chemin des fichiers.
-        
+        Marche avec src, dst en Path ou pas
         """
-        copyfile(src, dst)
+
+        shutil.copyfile(src, dst)
 
 
 class Developper:
-    
+
     def get_list_method_in_class(self, Foo):
         """
         Voir ?
@@ -169,7 +188,7 @@ class Developper:
         for att in dir(your_object):
             print (att, getattr(your_object,att))
         """
-        
+
         method_list = [func for func in dir(Foo) \
                        if callable(getattr(Foo, func)) \
                        and not func.startswith("__")]
@@ -183,9 +202,9 @@ if __name__ == "__main__":
     dev = Developper()
 
     pt.get_current_directory()
-    
+
     print(pt.get_file_list("./", ".py"))
-    
+
     d = "/media/data/3D/projets/pymultilame/pymultilame"
     print(pt.get_file_list(d, ".py"))
 
@@ -201,11 +220,27 @@ if __name__ == "__main__":
     e = Path('/media')
     f = e / 'data' / '3D' / 'projets' / 'darknet-letters'
     print("file_list =", pt.get_file_list(f, [".py"]))
-        
+
     print("Chemin du home", Path.home())
 
     c = pt.construct_path()
     print("Exemple de construction d'un chemin", c)
 
     lines = pt.opening_file('mytools.py')
-    print(lines)
+    print(lines[0])
+
+    # Changement d'extension
+    f = pt.set_extension('mytools.py', '.toto')
+    print('mytools.py de type', type('mytools.py'), 'devient',
+            f, "de type", type(f))
+
+    # Conversion Path to str
+    print(pt.path_to_str(f), type(pt.path_to_str(f)))
+
+    # Copie avec fichier en Path
+    print("Copie de", type('mytools.py'), "vers", type(f))
+    copyfile('mytools.py', f)
+
+    copyfile(Path('mytools.py'), str(pt.set_extension('mytools.py', '.moi')))
+
+    pt.change_directory('mytools.py')

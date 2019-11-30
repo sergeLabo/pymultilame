@@ -74,6 +74,10 @@ class MyConfig():
 
         print("\nConfiguration chargée depuis {}".format(self.ini))
 
+        # Si erreur chemin/fichier
+        if not self.conf:
+            print("Le fichier de configuration est vide")
+        
     def save_config(self, section, key, value):
         """
         Sauvegarde dans le fichioer *.ini  avec section, key, value.

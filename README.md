@@ -18,9 +18,12 @@ qui n'est plus maintenu.
 * Network: des sockets simples en python3
 * Tools: des outils utilisés fréquement
 
-### Modifications majeurs Version 
+### Modifications majeurs Version
+#### 1.59
+* print myconfig si self.conf vide
+
 #### 1.58
-Extensions multiples
+* Extensions multiples
 
 #### 1.57
 * Avec path_tools
