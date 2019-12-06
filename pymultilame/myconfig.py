@@ -50,7 +50,7 @@ class MyConfig():
     enregistre les changements par section, clé.
     """
 
-    def __init__(self, ini_file):
+    def __init__(self, ini_file, verbose=1):
         """
         Charge la config depuis un fichier *.ini
         Le chemin doit être donné avec son chemin absolu.
@@ -58,7 +58,9 @@ class MyConfig():
 
         self.conf = {}
         self.ini = ini_file
+        self.verbose = verbose
         self.load_config()
+        
 
     def load_config(self):
         """Lit le fichier *.ini, et copie la config dans un dictionnaire."""
@@ -72,7 +74,8 @@ class MyConfig():
             for key, value in parser.items(section_name):
                 self.conf[section_name][key] = ast.literal_eval(value)
 
-        print("\nConfiguration chargée depuis {}".format(self.ini))
+        if self.verbose:
+            print("\nConfiguration chargée depuis {}".format(self.ini))
 
         # Si erreur chemin/fichier
         if not self.conf:
@@ -97,7 +100,8 @@ class MyConfig():
         with open(self.ini, "w") as f:
             config.write(f)
         f.close()
-        print("{1} = {2} saved in {3} in section {0}\n".format(section, key, val, self.ini))
+        if self.verbose:
+            print("{1} = {2} saved in {3} in section {0}\n".format(section, key, val, self.ini))
 
 
 if __name__ == "__main__":

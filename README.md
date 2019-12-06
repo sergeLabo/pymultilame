@@ -19,6 +19,9 @@ qui n'est plus maintenu.
 * Tools: des outils utilisés fréquement
 
 ### Modifications majeurs Version
+#### 1.60
+* verbose dans myconfig
+
 #### 1.59
 * print myconfig si self.conf vide
 
