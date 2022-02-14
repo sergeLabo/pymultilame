@@ -42,10 +42,10 @@ class TcpClient3:
         self.sock = None
         self.connected = 0
         self.create_socket()
-        
+
     def create_socket(self):
         """Création du socket sans try, et avec connexion."""
-        
+
         # Création
         if not self.sock:
             self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -73,7 +73,7 @@ class TcpClient3:
             self.sock = None
             print("Déconnecté", e)
             self.create_socket()
-                
+
     def send(self, msg):
         """Envoi d'un message, avec send, msg doit être encodé avant."""
 
@@ -111,7 +111,7 @@ class TcpClient3:
 
         raw_data = None
         raw_data = self.sock.recv(buff)
-        
+
         return raw_data
 
     def clear_buffer(self, buff):
@@ -120,24 +120,25 @@ class TcpClient3:
                 print("Vidange du buffer")
         except:
             print("Buffer vide")
-        
+
 
 if __name__ == "__main__":
 
     ip = "127.0.0.1"
-    port = 8888
+    port = 8000
 
     clt = TcpClient3(ip, port)
 
     while 1:
         clt.re_connect_sock()
         try:
-            data = clt.listen(3109)
+            data = clt.listen(8000)
+            clt.send("ping".encode("utf-8"))
         except:
             data = None
             print("Pas de réception sur le client TCP")
-            
+
         if data:
             print("test.jpg enregistré")
-            
+
     clt.close_sock()

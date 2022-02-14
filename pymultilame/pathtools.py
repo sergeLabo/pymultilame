@@ -46,7 +46,7 @@ class PathTools:
         """
 
         try:
-            pathlib.Path(directory).mkdir(mode=0o777, parents=False)
+            Path(directory).mkdir(mode=0o777, parents=False)
             print("Création du répertoire: {}".format(directory))
         except FileExistsError as e:
             print("Ce répertoire existe: {}".format(directory))

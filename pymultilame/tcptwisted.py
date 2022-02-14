@@ -87,7 +87,7 @@ class MyTCPServerFactory(Factory):
 
 
 class MyTcpClient(Protocol):
-    
+
     def __init__(self):
         print("Un protocol client créé")
 
@@ -98,7 +98,7 @@ class MyTcpClient(Protocol):
 
 
 class MyTcpClientFactory(ReconnectingClientFactory):
-    
+
     def startedConnecting(self, connector):
         print("Essai de connexion ...")
 
@@ -118,7 +118,7 @@ class MyTcpClientFactory(ReconnectingClientFactory):
 
 
 def run_tcp_server(port):
-    
+
     endpoint = TCP4ServerEndpoint(reactor, port)
     endpoint.listen(MyTCPServerFactory())
     reactor.run()
@@ -135,7 +135,7 @@ def client(host, port):
     reactor.run(installSignalHandlers=False)
 
 def client_thread(host, port):
-    
+
     thread_C = threading.Thread(target=client, args=(host, port))
     print("Thread Twisted  Client ....")
     thread_C.start()
@@ -156,9 +156,9 @@ def main(opt):
 
 if __name__ == "__main__":
     print("""Lancement du script avec:
-    python3 labtcptwisted.py server
+    python3 tcptwisted.py server
     ou
-    python3 labtcptwisted.py client
+    python3 tcptwisted.py client
     """)
 
     opt = sys.argv[1]

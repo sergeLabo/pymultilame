@@ -42,7 +42,7 @@ class MyTools:
         Retourne la liste de tous les fichiers avec les extentions de
         la liste extentions.
         """
-        
+
         file_list = []
         for path, subdirs, files in os.walk(directory):
             for name in files:
@@ -51,7 +51,7 @@ class MyTools:
                         file_list.append(str(Path(path, name)))
 
         return file_list
-    
+
     def get_all_sub_directories(self, root):
         """
         Retourne la liste de tous les sous-répertoires,
@@ -70,14 +70,13 @@ class MyTools:
         try:
             with open(file_name) as f:
                 data = f.read()
-            f.close()
         except:
             data = None
             print("Fichier inexistant ou impossible à lire:", file_name)
 
         return data
 
-    def write_data_in_file(self, data, fichier, mode):
+    def write_data_in_file(self, data, fichier, mode="w"):
         """
         Ecrit data dans le fichier.
         Mode 'w' écrit un string dans le fichier
@@ -87,7 +86,28 @@ class MyTools:
         """
         with open(fichier, mode) as fd:
             fd.write(data)
-        fd.close()
+
+    def write_data_in_file_create_dir_if_needed(self, data, fichier,
+                                                base, mode="w"):
+        """
+        Crée les sous dossiers si besoin, fichier est le chemin absolu
+
+        Attention: ça peut créer des dossiers n'importe où !!!!!!!!!!!!!
+        TODO: faire une limitation avec un argument de chemin de base
+
+        abs = /media/data/3D/projets/police_du_wiki/toto/file.txt
+        chemin de base = /media/data/3D/projets/police_du_wiki
+        on ne peut créer que dans le dossier chemin de base
+
+        Ecrit data dans le fichier.
+        Mode 'w' écrit un string dans le fichier
+        Mode 'wb' écrit des bytes dans le fichier
+        w écrase
+        a ajoute
+        """
+
+        with open(fichier, mode) as fd:
+            fd.write(data)
 
     def data_to_json(self, data):
         """Retourne le json des datas"""
@@ -101,10 +121,7 @@ class MyTools:
         """
         with open(fichier) as f:
             data = f.read()
-        f.close()
-
         data = loads(data)
-
         return data
 
     def print_all_key_value(self, my_dict):
@@ -125,8 +142,7 @@ class MyTools:
 
     def create_directory(self, directory):
         """
-        Crée le répertoire avec le chemin absolu.
-        ex: /media/data/3D/projets/meteo/meteo_forecast/2017_06
+        Crée le répertoire avec le chemin absolu, ou relatif:
         """
 
         try:
